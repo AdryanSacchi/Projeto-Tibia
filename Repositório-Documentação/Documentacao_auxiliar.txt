@@ -1,0 +1,7 @@
+Documentação Auxiliar - 
+
+Um dos primeiros jogadores - Knightmare 
+
+Criadores/Devs - Steve, Stephan e Durin, os devs originais do Tibia 
+
+Ambos programavam na Quinta série em Turbo Pascal, mas quando tiveram a ideia de criar um jogo com interface gráfica, tiveram que optar pelo C++ (porém eles nunca haviam programado em C++ na vida)

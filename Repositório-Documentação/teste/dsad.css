@@ -1,0 +1,224 @@
+/* --- ESTILOS GERAIS E FUNDO --- */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif; /* Fonte base */
+    color: #c0c0c0; /* Cor de texto clara padrão */
+    background-color: #211d17; /* Fundo escuro */
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.page-container {
+    width: 1200px; /* Largura máxima do layout */
+}
+
+/* --- CABEÇALHO (HEADER) --- */
+.header-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    height: 40px;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+}
+
+.char-icon {
+    width: 30px; /* Ajuste conforme sua imagem */
+    height: 30px;
+    margin-right: 5px;
+}
+
+.tibia-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: gold; /* Cor dourada para o título */
+    text-shadow: 1px 1px 2px #000;
+}
+
+.thais-label {
+    color: #aaa;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* --- LAYOUT PRINCIPAL (GRID) --- */
+.main-layout-grid {
+    display: grid;
+    /* Define as 3 colunas: Esquerda (200px), Central (fluida), Direita (180px) */
+    grid-template-columns: 200px 1fr 180px;
+    gap: 10px; /* Espaçamento entre as colunas */
+    padding-top: 5px;
+}
+
+
+/* --- COLUNA ESQUERDA (SIDEBAR-LEFT) --- */
+.sidebar-left {
+    display: flex;
+    flex-direction: column;
+    /* O background do castelo no original continua por trás, mas aqui estiliza a barra */
+    background: linear-gradient(to top, #360a0a, #8f0e0e); /* Gradiente vermelho/laranja */
+    min-height: 600px;
+    border-right: 1px solid #444;
+}
+
+.login-box {
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.4); /* Fundo semi-transparente */
+}
+
+.login-box h2 {
+    margin: 0 0 5px 0;
+    font-size: 24px;
+    color: #ffcc00; /* Dourado */
+}
+
+.create-account {
+    margin: 0;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.navigation {
+    padding: 0 0 10px 0;
+}
+
+.menu-section {
+    color: #fff;
+}
+
+.menu-section h3 {
+    margin: 0;
+    padding: 5px 10px;
+    background-color: #5d0c0c; /* Barra de título (Biblioteca, Mundo) */
+    border-bottom: 2px solid #a01010;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.sub-menu {
+    list-style: none;
+    padding: 5px 0;
+    margin: 0;
+}
+
+.sub-menu li {
+    padding: 5px 15px;
+    font-size: 14px;
+    color: #f0f0f0;
+    cursor: pointer;
+}
+
+.sub-menu li:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* --- COLUNA CENTRAL (CONTENT-CENTER) --- */
+.content-center {
+    /* Fundo da batalha/castelo no container principal */
+    background-image: url('fundo_castelo_batalha.jpg'); /* Substitua pelo seu fundo */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    /* Escurece a imagem de fundo */
+    background-color: rgba(0, 0, 0, 0.5); 
+    padding: 10px;
+    /* Ajusta para que as caixas de conteúdo fiquem por cima */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: relative; /* Para posicionar o foreground */
+}
+
+.content-box {
+    background-color: rgba(50, 0, 0, 0.7); /* Fundo vermelho escuro semi-transparente */
+    border: 1px solid #663333;
+    padding: 0;
+}
+
+.box-title {
+    margin: 0;
+    padding: 5px 10px;
+    background-color: #660000; /* Barra de título das caixas */
+    color: #fff;
+    font-size: 16px;
+    border-bottom: 1px solid #993333;
+}
+
+/* Estilo específico para o "Início" em "Historia" */
+.history-box .main-title {
+    font-size: 40px;
+    color: #fff;
+    margin: 20px 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #993333;
+}
+
+/* Adiciona o fundo do campo de batalha na parte inferior (opcional) */
+.battle-foreground {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100px; /* Altura da parte inferior visível */
+    background-image: url('batalha_foreground.png'); /* Substitua pela imagem do campo de batalha na base */
+    background-size: cover;
+    opacity: 0.5; /* Ajuste de opacidade */
+}
+
+/* --- COLUNA DIREITA (SIDEBAR-RIGHT) --- */
+.sidebar-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* Alinha o conteúdo à direita */
+}
+
+.minimap-container {
+    width: 100%;
+    max-width: 150px; /* Largura do minimap */
+    border: 2px solid #5d0c0c; /* Borda do minimap */
+    background-color: #000;
+    margin-bottom: 20px;
+}
+
+.minimap-image {
+    width: 100%;
+    display: block;
+}
+
+.minimap-arrows {
+    text-align: center;
+    padding: 5px 0;
+    background-color: #333;
+}
+
+.arrow {
+    color: #fff;
+    font-size: 20px;
+    margin: 0 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.monster-image-container {
+    /* Contêiner vazio para a imagem flutuante */
+    /* Posicione a imagem do monstro no canto inferior direito */
+    position: relative;
+    width: 100%;
+}
+
+.monster-image {
+    width: 180px; /* Largura do monstro (Grim Reaper) */
+    display: block;
+    /* Ajuste de posição vertical para simular a flutuação */
+    margin-top: -50px;
+}
