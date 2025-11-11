@@ -84,6 +84,8 @@ body {
     background-color: rgba(0, 0, 0, 0.4); 
     border-right: 1px solid #444;
     max-height: 600px;
+    z-index: 1000;
+    
     
 }
 /* box de login */
@@ -295,6 +297,14 @@ body {
 }
 
 .item-grid2 .grid-item {
+    margin-top: 20px;
+    width: 400px; 
+    height: 300px; 
+    border: 1px solid #999;
+    background-color: #000000;
+}
+
+.item-grid3 .grid-item {
     margin-top: 20px;
     width: 400px; 
     height: 300px; 
