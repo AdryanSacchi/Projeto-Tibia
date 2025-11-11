@@ -95,11 +95,16 @@ body {
     background-color: rgba(0, 0, 0, 0.4); 
     
 }
+
+.login-box p{
+    margin-top: -10px;
+}
+
 /* titulo login */
 .login-box h2 {
-    margin-top: -25px;
+    margin-top: -40px;
     /* margin: 0 0 5px 0; */
-    font-size: 30px;
+    font-size: 45px;
     color: #ffcc00;
 }
 
@@ -191,6 +196,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    margin-right: 40px;
 }
 /* especificações do mapa */
 .minimap-container {
@@ -215,7 +221,7 @@ body {
 .monster-image {
     width: 180px; 
     display: block;
-    margin-top: -50px;
+    margin-right: 40px;
 }
 
 /* TODA A PARTE DE TEXTO DA PARTE CENTRAL DA PAGE */
@@ -265,6 +271,7 @@ body {
 
 /* separando os itens */
 .item-grid .grid-item {
+    margin-bottom: 20px;
     margin-top: 20px;
     width: 60px; 
     height: 60px; 
@@ -280,10 +287,17 @@ body {
 .item-grid2 {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 5px;
-    justify-items: center; 
-    align-items: center;
-    width: 50%;
+    gap: 10px;
+    justify-items: auto; 
+    align-items: auto;
+    width: 30%;
     margin: 15px;
+}
+
+.item-grid2 .grid-item {
+    margin-top: 20px;
+    width: 400px; 
+    height: 300px; 
     border: 1px solid #999;
+    background-color: #000000;
 }
