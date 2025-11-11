@@ -1,3 +1,6 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Wet+Paint&display=swap');
+
 /* box geral da page*/
 body {
     background-image: url(assets/imgs/background_page.png);
@@ -28,17 +31,23 @@ body {
 
 .logo-area {
     display: flex;
-    align-items: center;
+    margin-left: 550px;
+    gap: 10px
+}
+
+.tittle-icon {
+    height: 40px;
+    width: auto;
 }
 
 .char-icon {
-    width: 30px; 
-    height: 30px;
+    width: 45px; 
+    height: 45px;
     margin-right: 5px;
 }
 
 .tibia-title {
-    font-size: 28px;
+    font-size: 40px;
     font-weight: bold;
     color: gold;
     text-shadow: 1px 1px 2px #000;
@@ -54,6 +63,7 @@ body {
 
 /* divisão das partes da pagina*/
 .main-grid {
+    margin-top: 20px;
     display: grid;
     grid-template-columns: 200px 1fr 180px;
     gap: 15px; 
@@ -71,6 +81,7 @@ body {
 }
 /* box de login */
 .login-box {
+    font-family: "Rubik Wet Paint", system-ui;
     color: #fff;
     padding: 10px;
     text-align: center;
@@ -78,8 +89,9 @@ body {
 }
 /* titulo login */
 .login-box h2 {
-    margin: 0 0 5px 0;
-    font-size: 24px;
+    margin-top: -25px;
+    /* margin: 0 0 5px 0; */
+    font-size: 30px;
     color: #ffcc00;
 }
 
@@ -98,6 +110,7 @@ body {
 }
 /* Navbar esquerda - Biblioteca/Mundo  */
 .navbar h3 {
+    font-family: "Rubik Wet Paint", system-ui;
     margin: 0;
     padding: 5px 10px;
     background-color: #5d0c0c; 
@@ -140,6 +153,12 @@ body {
     border: 1px solid #663333;
     padding: 0;
 }
+
+.text-news p{
+    margin-left: 10px;
+    font-size: 15px;
+}
+
 /* estilização do titulo da box */
 .box-title {
     margin: 0;
@@ -189,4 +208,63 @@ body {
     width: 180px; 
     display: block;
     margin-top: -50px;
+}
+
+/* TODA A PARTE DE TEXTO DA PARTE CENTRAL DA PAGE */
+
+.content-box.history {
+    padding: 15px;
+}
+
+.history-content {
+    display: flex;
+    gap: 20px; 
+    align-items: flex-start; 
+}
+
+/* ocupação do espaço de texto(2/3) */
+.history-text {
+    flex: 2;
+    padding-right: 10px;
+}
+
+/* ocupação do espaço de imagem (1/3) */
+.history-image-container {
+    flex: 1; 
+}
+
+/* ajuste da imagem dentro do container + borda na img */
+.history-image-container .history-image {
+    max-width: 100%; 
+    height: auto;
+    border: 1px solid #666; 
+}
+/* trocando o lado da imagem */
+.history-content p{
+    flex-direction: row-reverse;
+}
+
+
+/* Estiliza o contêiner dos itens para usar o Grid */
+.item-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    justify-items: center; 
+    align-items: center;
+    width: 100%; 
+}
+
+/* separando os itens */
+.item-grid .grid-item {
+    margin-top: 20px;
+    width: 60px; 
+    height: 60px; 
+    border: 1px solid #999;
+    background-color: #000000;
+}
+
+.history-image-container {
+    flex: 1; 
+    text-align: left;
 }
