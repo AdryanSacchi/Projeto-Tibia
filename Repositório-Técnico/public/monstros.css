@@ -21,6 +21,12 @@
     text-decoration: none; 
 }
 
+.sub-navbar a{
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
 .sub-navbar a:hover {
     color: gold; 
     text-decoration: none;
@@ -121,6 +127,7 @@ body {
     text-align: center;
     background-color: rgba(0, 0, 0, 0.4); 
     cursor: pointer;
+     text-shadow: 1px 1px 2px #000;
     
 }
 
@@ -160,6 +167,7 @@ body {
     font-weight: bold;
     text-transform: uppercase;
     cursor: pointer;
+     text-shadow: 1px 1px 2px #000;
 }
 
 .sub-navbar {
@@ -217,6 +225,7 @@ body {
     margin: 20px 10px;
     padding-bottom: 5px;
     border-bottom: 1px solid #993333;
+     text-shadow: 1px 1px 2px #000;
 }
 
 /* Sidebar direita Mapa/Monstro */
@@ -262,7 +271,7 @@ body {
 }
 
 /* estilização do card */
-.card-monstro {
+.espacamento {
     background-color: rgba(30, 0, 0, 0.7);
     border: 1px solid #990000;
     padding: 10px;
@@ -273,6 +282,7 @@ body {
 
 /* nome do monstro */
 .header-monstro {
+    margin-top: 5px;
     display: flex;
     align-items: center;
     gap: 15px;
@@ -290,8 +300,9 @@ body {
 
 /* imagem monstro */
 .monstro-img-lista {
-    width: 64px;
-    height: 64px;
+    margin-left: 10px;
+    width: 70px;
+    height: 70px;
     border: 2px solid #ffcc00;
     background-color: #000;
 }
