@@ -193,7 +193,6 @@ body {
     flex-direction: column;
     gap: 10px;
     position: relative;
-    overflow-x: hidden;
 }
 /* background box central */
 .content-box {
@@ -269,6 +268,8 @@ body {
     display: flex;
     gap: 20px; 
     align-items: flex-start; 
+    flex-direction: column;
+    
 }
 
 /* ocupação do espaço de texto(2/3) */
