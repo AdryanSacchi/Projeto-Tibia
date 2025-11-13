@@ -20,7 +20,9 @@
     height: 100%;
 }
 
-
+.selected {
+    color: gold !important;
+}
 
 .sub-navbar a:link,
 .sub-navbar a:visited,

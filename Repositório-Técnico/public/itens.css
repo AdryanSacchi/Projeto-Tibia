@@ -14,6 +14,10 @@
     text-decoration: none;
 }
 
+.selected {
+    color: gold !important;
+}
+
 .sub-navbar a:link,
 .sub-navbar a:visited,
 .sub-navbar a:active {

@@ -9,6 +9,10 @@
     text-decoration: none; 
 }
 
+.selected {
+    color: gold !important;
+}
+
 .login-box h2 a:hover {
     color: gold;
     text-decoration: none;
