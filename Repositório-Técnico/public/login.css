@@ -36,17 +36,20 @@
 
 /* box geral da page*/
 body {
-    background-image: url(assets/imgs/login-cadastrov3.jpg);
+    background-image: url(assets/imgs/mapanovo-global.jpg   );
     background-color: #00000059;
-    /* background-size: auto; */
+    background-size: auto;
     background-attachment: fixed;
+    background-position: center center;
+    background-repeat: no-repeat;
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif; 
     color: aliceblue;
-    background-color: #211d17;
+    background-color: rgb(71, 64, 58);
     display: flex;
     justify-content: center;
+    
 }
 
 .page-container {
@@ -203,8 +206,8 @@ body {
 }
 /* background box central */
 .content-box {
-    margin-left: 60px;
-    width: 50%;
+    margin-left: 40px;
+    width: 60%;
     height: 100%;
     background-color: rgb(41, 39, 39);
     border: 1px solid #999;
@@ -223,18 +226,24 @@ body {
     border-bottom: 1px solid #999;
     font-size: 16px;
     font-weight: bold;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     cursor: pointer;
 }
 
 .botaoLogin{
+    width: 100%;
     height: auto;
-    margin-right: 50px;
     margin-top: 40px;
     display: flex;
     justify-content: flex-end;
 }
 
+.botaoLogin button{
+    color: #999;
+    margin-right: 50px;
+    width: 100px;
+    background-color: #444;
+}
 
 .text-news p{
     margin-left: 10px;
@@ -254,6 +263,7 @@ body {
 }
 
 .input-senha{
+    color: aliceblue;
     background-color: #111111;
     margin-left: 4px;
     font-weight: bold;
@@ -263,11 +273,12 @@ body {
 .text-senha{
     color: #999;
     font-weight: bold;
-    margin-left: 8px;
+    margin-left: 48px;
     display: inline-block;
 }
 
 .input-email{
+    color: aliceblue;
     background-color: #111111;
     margin-left: 8px;
     font-weight: bold;
@@ -278,7 +289,7 @@ body {
     color: #999;
     display: inline-block;
     font-weight: bold;
-    margin-left: 10px;
+    margin-left: 50px;
 }
 
 
