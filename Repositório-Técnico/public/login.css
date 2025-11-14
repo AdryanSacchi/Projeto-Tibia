@@ -1,0 +1,413 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Wet+Paint&display=swap');
+
+.login-box h2 a:link,
+.login-box h2 a:visited,
+.login-box h2 a:active {
+    color: gold; 
+    text-decoration: none; 
+}
+
+.login-box h2 a:hover {
+    color: gold;
+    text-decoration: none;
+}
+
+.sub-navbar a:active{
+    color: gold;
+}
+
+.sub-navbar a:link,
+.sub-navbar a:visited{
+    color: aliceblue; 
+    text-decoration: none; 
+}
+
+.sub-navbar a{
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.sub-navbar a:hover {
+    color: gold; 
+    text-decoration: none;
+}
+
+/* box geral da page*/
+body {
+    background-image: url(assets/imgs/login-cadastrov3.jpg);
+    background-color: #00000059;
+    /* background-size: auto; */
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif; 
+    color: aliceblue;
+    background-color: #211d17;
+    display: flex;
+    justify-content: center;
+}
+
+.page-container {
+    width: 1200px;
+    height: 900px;
+}
+
+/* Header  */
+.header-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    height: 100px;
+    width: 100px;
+    
+}
+
+.logo-area {
+    display: flex;
+    margin-left: 550px;
+    gap: 10px
+}
+
+.title-icon {
+    height: 17px;
+    width: auto;
+}
+
+.char-icon {
+    width: 45px; 
+    height: 45px;
+    margin-right: 5px;
+}
+
+.titulo-header{
+    height: 40px;
+    width: auto;
+}
+
+.tibia-title {
+    font-size: 40px;
+    font-weight: bold;
+    color: gold;
+    text-shadow: 1px 1px 2px #000;
+}
+
+.box-maps {
+    margin-top: 35px;
+    margin-right: 35px;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* divisão das partes da pagina*/
+.main-grid {
+    margin-top: 150px;
+    /* grid-template-columns: 200px 1fr 180px; */
+    gap: 15px; 
+    padding-top: 5px;
+}
+
+
+/* Navbar esquerda*/
+.sidebar-left {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.4); 
+    border-right: 1px solid #444;
+    max-height: 600px;
+    z-index: 1000;
+    
+    
+}
+/* box de login */
+.login-box {
+    font-family: "Rubik Wet Paint", system-ui;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.4); 
+    cursor: pointer;
+    
+}
+
+.login-box p{
+    margin-top: -10px;
+}
+
+/* titulo login */
+.login-box h2 {
+    margin-top: -40px;
+    /* margin: 0 0 5px 0; */
+    font-size: 45px;
+    color: #ffcc00;
+}
+
+.create-account {
+    margin: 0;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.navigation {
+    padding: 0 0 10px 0;
+}
+
+.navbar {
+    color: #fff;
+}
+/* Navbar esquerda - Biblioteca/Mundo  */
+.navbar h3 {
+    font-family: "Rubik Wet Paint", system-ui;
+    margin: 0;
+    padding: 5px 10px;
+    background-color: #5d0c0c; 
+    border-bottom: 2px solid #a01010;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.sub-navbar {
+    list-style: none;
+    padding: 5px 0;
+    margin: 0;
+}
+
+.sub-navbar li {
+    padding: 5px 15px;
+    font-size: 14px;
+    color: #f0f0f0;
+    cursor: pointer;
+}
+
+.sub-navbar li:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* coluna centro */
+.box-center{
+    justify-self: normal;
+    padding: 10px;
+    width: 60%;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: relative;
+    overflow-x: hidden;
+    margin-left: 400px;
+}
+/* background box central */
+.content-box {
+    margin-left: 60px;
+    width: 50%;
+    height: 100%;
+    background-color: rgb(41, 39, 39);
+    border: 1px solid #999;
+    padding: 0;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.9)
+}
+
+.crie-sua-conta {
+    color: #999;
+    justify-content: flex-start;
+    margin-right: 60px;
+    margin-left: 20px;
+    margin-top: 100px;
+    display: flex;
+    gap: 10px;
+    border-bottom: 1px solid #999;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.botaoLogin{
+    height: auto;
+    margin-right: 50px;
+    margin-top: 40px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+
+.text-news p{
+    margin-left: 10px;
+    font-size: 15px;
+}
+
+/* estilização do titulo da box */
+.box-title {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 5px 10px;
+    background-color: #000000;
+    color: #999;
+    font-size: 16px;
+    border-bottom: 1px solid #ffffff;
+}
+
+.input-senha{
+    background-color: #111111;
+    margin-left: 4px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.text-senha{
+    color: #999;
+    font-weight: bold;
+    margin-left: 8px;
+    display: inline-block;
+}
+
+.input-email{
+    background-color: #111111;
+    margin-left: 8px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.text-email{
+    color: #999;
+    display: inline-block;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+
+/* Titulo - explicação sobre a historia */
+.history .main-title {
+    display: flex;
+    justify-content: center;
+    font-size: 40px;
+    color: #fff;
+    margin: 20px 10px;
+    padding-bottom: 5px;
+
+}
+
+/* Sidebar direita Mapa/Monstro */
+.sidebar-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-right: 40px;
+}
+/* especificações do mapa */
+.minimap-container {
+    width: 100%;
+    max-width: 150px; 
+    border: 3px solid #5d0c0c; 
+    background-color: #000;
+    margin-bottom: 20px;
+}
+
+.minimap-image {
+    width: 100%;
+    display: block;
+}
+
+/* container monstro */
+.monster-image-container {
+    position: relative;
+    width: 100%;
+}
+/* especificações imagem do monstro */
+.monster-image {
+    width: 180px; 
+    display: block;
+    margin-right: 40px;
+}
+
+/* TODA A PARTE DE TEXTO DA PARTE CENTRAL DA PAGE */
+
+.content-box.history {
+    padding: 15px;
+}
+
+.box-history {
+    display: flex;
+    gap: 20px; 
+    align-items: flex-start; 
+}
+
+/* ocupação do espaço de texto(2/3) */
+.box-descricao {
+    flex: 2;
+    padding-right: 10px;
+}
+
+/* ocupação do espaço de imagem (1/3) */
+.img-container-meio {
+    flex: 1; 
+}
+
+/* ajuste da imagem dentro do container + borda na img */
+.img-container-meio .history-image {
+    max-width: 100%; 
+    height: auto;
+    border: 1px solid #666; 
+}
+/* trocando o lado da imagem */
+.box-history p{
+    flex-direction: row-reverse;
+}
+
+
+/* Estiliza o contêiner dos itens para usar o Grid */
+.item-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    justify-items: center; 
+    align-items: center;
+    width: 100%; 
+}
+
+/* separando os itens */
+.item-grid .grid-item {
+    margin-bottom: 20px;
+    margin-top: 20px;
+    width: 60px; 
+    height: 60px; 
+    border: 1px solid #999;
+    background-color: #000000;
+}
+
+.img-container-meio {
+    width: 100%; 
+    text-align: center;
+}
+
+.item-grid2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    justify-items: auto; 
+    align-items: auto;
+    width: 30%;
+    margin: 15px;
+}
+
+.item-grid2 .grid-item {
+    margin-top: 20px;
+    width: 350px; 
+    height: 310px; 
+    border: 1px solid #999;
+    background-color: #000000;
+}
+
+.item-grid3 .grid-item {
+    margin-top: 20px;
+    width: 400px; 
+    height: 300px; 
+    border: 1px solid #999;
+    background-color: #000000;
+}
