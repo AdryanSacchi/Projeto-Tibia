@@ -1,0 +1,102 @@
+
+:root {
+    --primary-brand-color: #999;
+    --secondary-brand-color: #8b0000;
+    --success: #198754;
+    --success-dark: #095c36;
+    --success-light: #9dd3ba;
+    --warning: #ffc107;
+    --warning-dark: #705400;
+    --warning-light: #fdebb3;
+    --danger: #dc3545;
+    --danger-dark: #990c19;
+    --danger-light: #f0c1c6;
+    --new-gray: #CCCCCC;
+    --new-black: #212427;
+    --new-white: #E8E8E8;
+}
+
+span{
+    color: aliceblue;
+}
+
+body {
+    background-image: url(assets/imgs/wallpaper-mageoutfit.png);
+    background-color: #000;
+    background-size: cover;
+    background-attachment: fixed;
+    display: flex;
+    padding-right: 20vh;
+    justify-content: flex-end;
+    color: var(--new-black);
+    background-color: var(--new-white);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    display: flex;
+    align-items: flex-end;
+    min-height: 70vh;
+}
+
+
+body .pontuacaoEJogo{
+    justify-content: space-around;
+    display: flex;
+    background-color: purple;    
+}
+
+.pontuacaoJust .width-fit-content{
+    display: flex;
+    flex-direction: column;
+    
+}
+
+
+button {
+    font-family: monospace;
+    font-weight: bold;
+}
+
+
+.flex-colunar {
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.width-fit-content {
+    width: fit-content;
+}
+
+.border-primary {
+    border: 3px solid var(--primary-brand-color);
+}
+
+.border-secondary {
+    border: 3px solid var(--secondary-brand-color);
+}
+
+.padding-8 {
+    padding: 8px;
+}
+
+.text-bold {
+    font-weight: bold;
+}
+
+.text-success-with-bg {
+    color: var(--success-dark);
+    background-color: var(--success-light);
+}
+
+.text-warning-with-bg {
+    color: var(--warning-dark);
+    background-color: var(--warning-light);
+}
+
+.text-danger-with-bg {
+    color: var(--danger-dark);
+    background-color: var(--danger-light);
+}
+
+.text-new-gray {
+    color: var(--new-gray);
+}
