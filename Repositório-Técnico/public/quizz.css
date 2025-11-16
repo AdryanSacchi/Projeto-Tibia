@@ -33,7 +33,8 @@ body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     display: flex;
     align-items: flex-end;
-    min-height: 70vh;
+    min-height: 76vh;
+    width: 80vw;
 }
 
 
@@ -46,6 +47,7 @@ body .pontuacaoEJogo{
 .pontuacaoJust .width-fit-content{
     display: flex;
     flex-direction: column;
+    margin-left: 6vh;
     
 }
 
@@ -66,9 +68,9 @@ button {
     width: fit-content;
 }
 
-.border-primary {
+/* .border-primary {
     border: 3px solid var(--primary-brand-color);
-}
+} */
 
 .border-secondary {
     border: 3px solid var(--secondary-brand-color);
