@@ -1,0 +1,123 @@
+
+body{
+    background-image: url(assets/imgs/plano-de-fundo-texturizado-de-concreto-grunge-preto.jpg);
+    background-color: #00000059;
+    background-size: cover;
+}
+
+.dash {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    gap: 20px;
+    height: 700px;
+    margin-left: 10%;
+    margin-top: 1%;
+}
+    
+.header {
+    height: 100px;
+    grid-column: span 5 / span 5;
+    margin-bottom: 5%;
+    display: flex;
+    align-items: center; 
+    padding: 0 10px;
+    justify-content: center;
+}
+
+.header-personagem {
+    width: 100px; 
+    height: 100px; 
+    cursor: pointer;
+}
+
+.header-playerinfo{
+    display: flex;
+    width: 120px; 
+    height: 120px; 
+    margin-top: 20%;
+    border: 5px solid #000000;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.player-info p{
+    color: rgb(212, 2, 2);
+    display: flex;
+    font: bold;
+    font-size: 20px;
+    margin-left: 28%;
+
+}
+
+.icones-header {
+    display: flex;
+    flex-direction: row;  
+    align-items: center;
+    gap: 60px;
+    margin-left: 20px;
+}
+
+.player-info {
+    backdrop-filter: blur(1px);
+    background-color: rgba(0, 0, 0, 0.3);
+    grid-row: span 4 / span 4;
+    grid-row-start: 2;
+    border: 5px solid #000000;
+}
+
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 15px; 
+    padding: 15px;
+    backdrop-filter: blur(1px);
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 5px solid #000000;
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+    height: 92%;
+    grid-column: span 3 / span 3;
+    grid-row: span 4 / span 4;
+    grid-row-start: 2;
+}
+      
+.card-kpi {
+    display: flex;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 0, 0, 0.801);
+    margin-top: 10%;
+    margin-left: 10%;
+    padding: 5px;
+    height: 80px;
+    width: 100px;
+}
+
+.selecao-personagem {
+    grid-column: 1 / span 3; 
+    display: flex;
+    align-items: center; 
+    gap: 10px; 
+    background-color: rgba(0, 0, 128, 0.2); 
+    border: 1px solid white;
+    padding: 20px;
+    height: 200px;
+    margin-top: 7%;
+    width: 50%;
+}
+
+.selecao-personagem img {
+    margin-top: 40px;
+    width: 200px;
+    height: 200px;
+    
+}
+
+.status-personagem{
+    margin-top: 7%;
+    color: aliceblue;
+    display: flex;
+    text-align: start;
+    justify-content: flex-end;
+}

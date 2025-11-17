@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="dashboard.css">
+    <title>Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <div class="dash">
+        <div class="header">
+            <div class="icones-header">
+                <img onclick="mage()" src="assets/icon/mage-dash.png" alt="Icone Mage" class="header-personagem">
+                <img onclick="archer()" src="assets/icon/archer-dash.png" alt="Icone Archer" class="header-personagem">
+                <img onclick="druid()" src="assets/icon/druid-dash.png" alt="Icone Druid" class="header-personagem">
+                <img onclick="knight()" src="assets/icon/knight-dash.png" alt="Icone Knight" class="header-personagem">
+                <img onclick="monk()" src="assets/icon/monk2-dash.png" alt="Icone Monk" class="header-personagem">
+            </div>
+        </div>
+        <div class="player-info">
+            <img src="assets/icon/icone-playerinfo.png" alt="Icone Player" class="header-playerinfo">
+            <p>PLAYER NAME</p>
+        </div>
+        <div class="dashboard">
+            <div class="card-kpi">ACERTOS</div>
+            <div class="card-kpi"><canvas id="graficoRosquinha"></canvas></div>
+            <div class="card-kpi">PRECISÃO</div>
+            <div class="selecao-personagem">
+                <img src="assets/icon/mage-dash.png" alt="Imagem do PERSONAGEM">
+                <canvas id="meuGraficoRadar"></canvas>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<!-- <div class="status-personagem">
+    ⚔️ 🟥<br>
+    🟣 🟥🟥🟥🟥🟥🟥<br>
+    🛡️ 🟥🟥<br>
+    👟 🟥🟥🟥<br>
+    🏹 🟥🟥🟥🟥<br><br><br>
+
+    Elemento: 🔥/⚡<br><br></div> -->
+<script>
+    const ctx = document.getElementById('meuGraficoRadar').getContext('2d');
+
+    const meuGrafico = new Chart(ctx, {
+        type: 'radar', //
+        data: {
+            labels: [
+                'Força',
+                'Agilidade',
+                'Inteligência',
+                'Sorte',
+                'Resistência'
+            ],
+            datasets: [{
+                label: 'Status do Personagem',
+                data: [1, 45, 100, 45, 20],
+                fill: true,
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgb(54, 162, 235)',
+                pointBackgroundColor: 'rgb(54, 162, 235)',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: 'rgb(54, 162, 235)'
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            elements: {
+                line: {
+                    borderWidth: 1
+                }
+            },
+            scales: {
+                r: {
+                    angleLines: {
+                        display: false
+                    },
+                    ticks: {
+                        display: false
+                    }
+                }
+            }
+        }
+    });
+
+    const ctxRosquinha = document.getElementById('graficoRosquinha').getContext('2d');
+
+    const graficoRosquinha = new Chart(ctxRosquinha, {
+        type: 'doughnut',
+        data: {
+            labels: [
+                'Acerto',
+                'Erro'
+            ],
+            datasets: [{
+                label: 'Porcentagem',
+                data: [70, 30],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.8)',
+                    'rgba(255, 99, 132, 0.2)'
+                ],
+                borderWidth: 0,
+                hoverOffset: 4
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    enabled: true
+                }
+            },
+        }
+    });
+</script>
