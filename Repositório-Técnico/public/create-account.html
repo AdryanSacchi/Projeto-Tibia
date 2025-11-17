@@ -27,7 +27,7 @@
                     </label>
 
                     <span class="text-email">Email:
-                        <input class="input-email" onblur="validarEmail()" id="input_email" type="text"
+                        <input class="input-email" onblur="validarEmail()" id="email_input" type="text"
                             placeholder="tibia@gmail.com">
                         <span id="span_validar_email"></span>
                     </span>
@@ -101,7 +101,7 @@
 
     // Valida nome
     function validarNome() {
-        var nome = text_nome.value.trim();
+        var nome = nome_input.value.trim();
         var apenasLetras = 0;
         nomeInvalido = false;
 
@@ -205,7 +205,7 @@
 
     //  Valida confirmação senha
     function validarConfirmacao() {
-        var cfm = confirmar_senha_input.value.trim();
+        var cfm = input_confirmar.value.trim();
         if (cfm == senha) {
             cfmSenhaInvalido = false;
             span_validar_cfmSenha.innerHTML = "";
@@ -224,6 +224,9 @@
             !cfmSenhaInvalido
         ) {
             span_verificar_campos.innerHTML = "✅ Cadastro realizado com sucesso!";
+            setTimeout(() => {
+                window.location.replace("login.html")
+            }, 2000);
         } else {
             span_verificar_campos.innerHTML = "⚠️ Preencha todos os campos corretamente.";
         }
