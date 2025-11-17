@@ -195,6 +195,14 @@ main {
     border-bottom: 1px solid #ffffff;
 }
 
+.input-nome{
+    color: aliceblue;
+    background-color: #111111;
+    margin-left: 96px;
+    font-weight: bold;
+    display: inline-block;    
+}
+
 .input-senha{
     color: aliceblue;
     background-color: #111111;
@@ -207,7 +215,7 @@ main {
 .input-confirmar{
     color: aliceblue;
     background-color: #111111;
-    margin-left: 10px;
+    margin-left: 11px;
     font-weight: bold;
     display: inline-block;
 }
@@ -220,17 +228,13 @@ main {
     display: inline-block;
 }
 
-.text-email, .text-senha{
+.text-email, .text-senha, .text-nome{
     color: #999;
     font-weight: bold;
     margin-left: 20px; 
     display: block;
     margin-bottom: 10px;
     margin-top: 10px;
-}
-
-.text-email{
-    margin-top: 20px;
 }
 
 .main-grid{

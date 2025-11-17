@@ -21,6 +21,11 @@
             <div class="main-grid">
                 <section class="content-box news">
                     <h3 class="box-title">Comece sua jornada</h3>
+                    <label class="text-nome" for="text_nome">Nome:
+                        <input class="input-nome" onblur="validarNome()" id="nome_input" type="text"
+                            placeholder="Adryan">
+                    </label>
+
                     <span class="text-email">Email:
                         <input class="input-email" onblur="validarEmail()" id="input_email" type="text"
                             placeholder="tibia@gmail.com">
@@ -96,7 +101,7 @@
 
     // Valida nome
     function validarNome() {
-        var nome = nome_input.value.trim();
+        var nome = text_nome.value.trim();
         var apenasLetras = 0;
         nomeInvalido = false;
 
@@ -119,7 +124,7 @@
         }
 
         if (nomeInvalido) {
-            span_validar_nome.innerHTML = "Digite um username válido.";
+            span_validar_nome.innerHTML = "Digite um nome válido.";
         } else {
             span_validar_nome.innerHTML = "";
         }
