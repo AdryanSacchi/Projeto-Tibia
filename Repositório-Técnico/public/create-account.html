@@ -22,20 +22,30 @@
                 <section class="content-box news">
                     <h3 class="box-title">Comece sua jornada</h3>
                     <span class="text-email">Email:
-                        <input class="input-email" type="text" id="input_email">
+                        <input class="input-email" onblur="validarEmail()" id="input_email" type="text"
+                            placeholder="tibia@gmail.com">
+                        <span id="span_validar_email"></span>
                     </span>
-
-                    <span class="text-senha">Senha:
-                        <input class="input-senha" type="password" id="input_senha">
-                    </span>
-                    <span class="text-senha">Confirmar Senha:
-                        <input class="input-confirmar" type="password" id="input_confirmar">
-                    </span>
-                    <li></li>
-
-                    <div class="botaoLogin">
-                        <button onclick="login">Criar uma conta</button>
+                    <div class="text-senha">
+                        <label for="input_senha">Senha</label>
+                        <input class="input-senha" onfocus="mostrarRequisitos()" oninput="validarSenha()"
+                            onblur="esconderRequisitos()" id="input_senha" type="password" placeholder="********">
+                        <br>
+                        <span id="inicio_requisitos"></span>
+                        <span id="span_validar_letras"></span>
+                        <span id="span_validar_numeros"></span>
+                        <span id="span_validar_simbolos"></span>
+                        <span id="span_validar_tamanho"></span>
                     </div>
+                    <span class="text-senha" for="confirmar_senha_input">Confirmar Senha:
+                        <input class="input-confirmar" onblur="validarConfirmacao()" id="input_confirmar"
+                            type="password" placeholder="********">
+                        <span id="span_validar_cfmSenha"></span>
+                        <li></li>
+                        <div class="botaoLogin">
+                            <button onclick="cadastrar()" type="button">Cadastrar</button>
+                        </div>
+                        <span id="span_verificar_campos"></span>
             </div>
             </section>
 
@@ -47,3 +57,171 @@
 </body>
 
 </html>
+
+<script>
+    var letrasPermitidas = "abcdefghijklmnopqrstuvwxyzçáéíóúãõABCDEFGHIJKLMNOPQRSTUVWXYZÇÁÉÍÓÚÃÕ ";
+    var numerosPermitidos = "0123456789";
+
+    var nomeInvalido = true;
+    var sobrenomeInvalido = true;
+    var emailInvalido = true;
+    var senhaInvalida = true;
+    var cfmSenhaInvalido = true;
+
+    var senha = "";
+
+
+    //  Valida e-mail
+    function validarEmail() {
+        var email = email_input.value.trim();
+        emailInvalido = true;
+
+        if (email.includes(" ")) {
+            emailInvalido = true;
+        } else if (
+            email.endsWith("@gmail.com") ||
+            email.endsWith("@hotmail.com") ||
+            email.endsWith("@outlook.com") ||
+            email.endsWith("@sptech.school")
+        ) {
+            emailInvalido = false;
+        }
+
+        if (emailInvalido) {
+            span_validar_email.innerHTML = "Digite um email válido.";
+        } else {
+            span_validar_email.innerHTML = "";
+        }
+    }
+
+    // Valida nome
+    function validarNome() {
+        var nome = nome_input.value.trim();
+        var apenasLetras = 0;
+        nomeInvalido = false;
+
+        var i = 0;
+        while (i < nome.length) {
+            var char = nome[i];
+
+            if (char != " ") {
+                apenasLetras++;
+            }
+
+            if (!letrasPermitidas.includes(char)) {
+                nomeInvalido = true;
+            }
+            i++;
+        }
+
+        if (apenasLetras < 3) {
+            nomeInvalido = true;
+        }
+
+        if (nomeInvalido) {
+            span_validar_nome.innerHTML = "Digite um username válido.";
+        } else {
+            span_validar_nome.innerHTML = "";
+        }
+    }
+
+
+    //  Mostra requisitos senha
+    function mostrarRequisitos() {
+        inicio_requisitos.innerHTML = "A senha deve conter:<br>";
+        span_validar_letras.innerHTML = "Letras maiúsculas e minúsculas<br>";
+        span_validar_numeros.innerHTML = "Ao menos 1 número<br>";
+        span_validar_simbolos.innerHTML = "Ao menos 1 símbolo (!@#$%&*_-./)<br>";
+        span_validar_tamanho.innerHTML = "De 8 a 20 caracteres";
+    }
+
+    //  Oculta requisitos
+    function esconderRequisitos() {
+        inicio_requisitos.innerHTML = "";
+        span_validar_letras.innerHTML = "";
+        span_validar_numeros.innerHTML = "";
+        span_validar_simbolos.innerHTML = "";
+        span_validar_tamanho.innerHTML = "";
+    }
+
+    //  Valida senha
+    function validarSenha() {
+        senha = input_senha.value.trim();
+        senhaInvalida = true;
+
+        var temMaius = false;
+        var temMinus = false;
+        var temNum = false;
+        var temSimb = false;
+        var simbolos = "!@#$%&*_-./";
+
+        var i = 0;
+        while (i < senha.length) {
+            var char = senha[i];
+
+            if (char >= "A" && char <= "Z") temMaius = true;
+            if (char >= "a" && char <= "z") temMinus = true;
+            if (numerosPermitidos.includes(char)) temNum = true;
+            if (simbolos.includes(char)) temSimb = true;
+
+            i++;
+        }
+
+        if (temMaius && temMinus) {
+            span_validar_letras.style.color = "#7fda89";
+        } else {
+            span_validar_letras.style.color = "#FF0000";
+        }
+
+        if (temNum) {
+            span_validar_numeros.style.color = "#7fda89";
+        } else {
+            span_validar_numeros.style.color = "#FF0000";
+        }
+
+        if (temSimb) {
+            span_validar_simbolos.style.color = "#7fda89";
+        } else {
+            span_validar_simbolos.style.color = "#FF0000";
+        }
+
+        if (senha.length >= 8 && senha.length <= 20) {
+            span_validar_tamanho.style.color = "#7fda89";
+        } else {
+            span_validar_tamanho.style.color = "#FF0000";
+        }
+
+        if (temMaius && temMinus && temNum && temSimb && senha.length >= 8 && senha.length <= 20) {
+            senhaInvalida = false;
+        }
+
+        confirmar_senha_input.disabled = senhaInvalida;
+    }
+
+    //  Valida confirmação senha
+    function validarConfirmacao() {
+        var cfm = confirmar_senha_input.value.trim();
+        if (cfm == senha) {
+            cfmSenhaInvalido = false;
+            span_validar_cfmSenha.innerHTML = "";
+        } else {
+            cfmSenhaInvalido = true;
+            span_validar_cfmSenha.innerHTML = "Senhas diferentes.";
+        }
+    }
+
+    //  Cadastro final
+    function cadastrar() {
+        if (
+            !nomeInvalido &&
+            !emailInvalido &&
+            !senhaInvalida &&
+            !cfmSenhaInvalido
+        ) {
+            span_verificar_campos.innerHTML = "✅ Cadastro realizado com sucesso!";
+        } else {
+            span_verificar_campos.innerHTML = "⚠️ Preencha todos os campos corretamente.";
+        }
+    }
+
+</script>
