@@ -8,12 +8,11 @@
     <link rel="stylesheet" href="/Repositório-Técnico/public/css/quizz.css">
 </head>
 
-
-<body onload="onloadEsconder()">
+<body onload="iniciar()">
     <div class="pontuacaoJust" id="pontuacaoEJogo">
-        <button id="btnIniciarQuiz" onclick="iniciarQuiz()">Começar a Jornada</button>
+        <button id="btnIniciarQuiz" onclick="iniciarJogo()">Começar a Jornada</button>
 
-        <div id="pontuacao" class="flex-colunar">
+        <div id="pontuacao" class="flex-colunar" style="display: none;">
             <div id="pontuacaoDuranteJogo" class="icons-quiz">
                 <img src="assets/icon/coraçãov1.png" alt="Icon Coração" class="coracao"><span
                     id="spanVidaAtual">100</span>
@@ -22,7 +21,7 @@
             </div>
         </div>
 
-        <div id="jogo" class="width-fit-content flex-colunar border-secondary">
+        <div id="jogo" class="width-fit-content flex-colunar border-secondary" style="display: none;">
 
             <div id="infoQuestao" class="padding-8">
                 <span>Piso atual: <span id="spanNumeroDaQuestaoAtual"></span> de <span id="qtdQuestoes"></span>
@@ -58,7 +57,7 @@
 
             <div id="botoes" class="flex-colunar padding-8">
                 <button onclick="submeter()" id="btnSubmeter">Ja me decidi!</button>
-                <button onclick="avancar()" id="btnProx" disabled>Avançar para o próximo andar</button>
+                <button onclick="proximoPiso()" id="btnProx" disabled>Avançar para o próximo andar</button>
                 <button onclick="tentarNovamente()" id="btnTentarNovamente" disabled>Vou tentar mais uma vez...</button>
             </div>
 
@@ -68,273 +67,197 @@
 
 </html>
 <script>
-    const listaDeQuestoes = [
-
+    const QUESTOES = [
         {
-            pergunta: "Você acabou de entrar em uma Masmorra, no seu caminho há uma ponte antiga e é necessário atravessa-la para continuar sua aventura, você encontra algumas possiblidades:",
+            pergunta: "Você acabou de entrar em uma Masmorra...",
             alternativaA: "ir pelo caminho Fácil (hehe)",
             alternativaB: "ir pelo Caminho totalmente escuro",
             alternativaC: "ir pela ponte quebrada",
             alternativaD: "aguardar (?)",
             alternativaCorreta: "alternativaC"
         },
-
         {
-            pergunta: "Ok, parece que subimos um andar... Você escuta um grito vindo em sua direção, mas possui outros caminhos para seguir caso desejar:",
+            pergunta: "Ok, parece que subimos um andar... Você escuta um grito...",
             alternativaA: "Correr em direção ao grito",
             alternativaB: "Virar a esquerda",
             alternativaC: "Virar a direita",
             alternativaD: "Pegar a tocha que está na parede e aguardar",
             alternativaCorreta: "alternativaB"
         },
-
         {
-            pergunta: "Parece que você sobreviveu a mais um andar, a sua frente 3 baús, o baú da esquerda esta cheio de musgo/planta por cima, baú do meio que esta em chamas e baú da direita que parece um baú simples, deseja abrir algúm?",
+            pergunta: "Parece que você sobreviveu a mais um andar, a sua frente 3 baús...",
             alternativaA: "Sim, quero abrir o baú da esquerda.",
             alternativaB: "Sim, quero abrir o baú do meio.",
             alternativaC: "Sim, quero abrir o baú da direita.",
-            alternativaD: "Eu sou suficiente com meus equipamentos! (você só tem as roupas do corpo)",
+            alternativaD: "Eu sou suficiente com meus equipamentos!",
             alternativaCorreta: "alternativaD"
         },
-
         {
-            pergunta: "Curioso.. você esta indo bem demais, é sua primeira vez aqui?",
+            pergunta: "Curioso.. você está indo bem demais, é sua primeira vez aqui?",
             alternativaA: "Sim",
             alternativaB: "Não",
             alternativaC: "QUEM TA PERGUNTANDO ISSO?!!??",
             alternativaD: "(silêncio)",
             alternativaCorreta: "alternativaD"
         },
-
         {
-            pergunta: "Sim, era outro andar. Ok agora tem 3 monstros na sua frente.. Um esquilo com olhos vermelhos, um zumbi com um taco na mão e um sapo gigante com uma espada nas costas:",
-            alternativaA: "Quero correr,chega disso !",
+            pergunta: "Agora tem 3 monstros na sua frente...",
+            alternativaA: "Quero correr, chega disso!",
             alternativaB: "Vou em direção ao Sapo",
             alternativaC: "Tento enfrentar o esquilo",
             alternativaD: "Vou roubar o taco do zumbi",
             alternativaCorreta: "alternativaB"
         }
-    ]
+    ];
 
-    // variáveis globais    
-    let numeroDaQuestaoAtual = 0
-    let pontuacaoFinal = 0
-    let tentativaIncorreta = 0
-    let certas = 0
-    let erradas = 0
-    let quantidadeDeQuestoes = listaDeQuestoes.length
+    let questaoAtual = 0;
+    let vida = 100;
+    let piso = 1;
+    const DANO = 25;
 
-    // adicionado contadores de vida, piso e o dano por erro
-
-    let vidaAtual = 100;
-    let pisoAtual = 1;
-    const danoPorErro = 25;
-
-    function onloadEsconder() {
-        document.getElementById('pontuacao').style.display = "none"
-        document.getElementById('jogo').style.display = "none"
+    function iniciar() {
+        document.getElementById('pontuacao').style.display = "none";
+        document.getElementById('jogo').style.display = "none";
     }
 
-    function iniciarQuiz() {
-        document.getElementById('pontuacao').style.display = "flex"
-        document.getElementById('jogo').style.display = "flex"
-        document.getElementById('btnIniciarQuiz').style.display = "none"
+    function iniciarJogo() {
+        document.getElementById('pontuacao').style.display = "flex";
+        document.getElementById('jogo').style.display = "flex";
+        document.getElementById('btnIniciarQuiz').style.display = "none";
 
-        document.getElementById('qtdQuestoes').innerHTML = quantidadeDeQuestoes
+        document.getElementById('qtdQuestoes').innerHTML = QUESTOES.length;
+        document.getElementById('spanVidaAtual').innerHTML = vida;
+        document.getElementById('spanPisoAtual').innerHTML = piso;
 
-        // alteração do display da vida e do piso
-        document.getElementById('spanVidaAtual').innerHTML = vidaAtual;
-        document.getElementById('spanPisoAtual').innerHTML = pisoAtual;
-
-        preencherHTMLcomQuestaoAtual(0)
-
-        btnSubmeter.disabled = false
-        btnProx.disabled = true
-        // btnConcluir.disabled = true
-        btnTentarNovamente.disabled = true
+        carregarQuestao(0);
     }
 
-    function preencherHTMLcomQuestaoAtual(index) {
-        habilitarAlternativas(true)
-        const questaoAtual = listaDeQuestoes[index]
-        numeroDaQuestaoAtual = index
-        console.log("questaoAtual")
-        console.log(questaoAtual)
-        document.getElementById("spanNumeroDaQuestaoAtual").innerHTML = pisoAtual
-        document.getElementById("spanQuestaoExibida").innerHTML = questaoAtual.pergunta;
-        document.getElementById("labelOpcaoUm").innerHTML = questaoAtual.alternativaA;
-        document.getElementById("labelOpcaoDois").innerHTML = questaoAtual.alternativaB;
-        document.getElementById("labelOpcaoTres").innerHTML = questaoAtual.alternativaC;
-        document.getElementById("labelOpcaoQuatro").innerHTML = questaoAtual.alternativaD;
+    function carregarQuestao(i) {
+        questaoAtual = i;
+        const q = QUESTOES[i];
+
+        habilitarOpcoes(true);
+
+        document.getElementById('spanNumeroDaQuestaoAtual').innerHTML = piso;
+        document.getElementById('spanQuestaoExibida').innerHTML = q.pergunta;
+
+        document.getElementById('labelOpcaoUm').innerHTML = q.alternativaA;
+        document.getElementById('labelOpcaoDois').innerHTML = q.alternativaB;
+        document.getElementById('labelOpcaoTres').innerHTML = q.alternativaC;
+        document.getElementById('labelOpcaoQuatro').innerHTML = q.alternativaD;
     }
 
     function submeter() {
-        const options = document.getElementsByName("option");
-        let hasChecked = false
-        for (let i = 0; i < options.length; i++) {
-            if (options[i].checked) {
-                hasChecked = true
-                break
+        const opcoes = document.getElementsByName("option");
+        let selecionado = null;
+
+        // Loop simples para achar a opção marcada
+        for (let i = 0; i < opcoes.length; i++) {
+            if (opcoes[i].checked) {
+                selecionado = opcoes[i];
+                break;
             }
         }
 
-        if (!hasChecked) {
-            alert("Tem certeza de que vai ficar ai parado?")
-        } else {
-            // adicionei o fim do jogo
-            if (vidaAtual <= 0) {
-                gameOver();
-                return;
-            }
-
-            btnSubmeter.disabled = true
-            btnProx.disabled = false
-
-            habilitarAlternativas(false)
-
-            checarResposta()
+        if (selecionado === null) {
+            alert("Escolha uma opção antes de continuar!");
+            return;
         }
+
+        document.getElementById('btnSubmeter').disabled = true;
+        document.getElementById('btnProx').disabled = false;
+        habilitarOpcoes(false);
+
+        verificarResposta(selecionado.value);
     }
 
-    function habilitarAlternativas(trueOrFalse) {
-        let opcaoEscolhida = trueOrFalse ? false : true
-
-        primeiraOpcao.disabled = opcaoEscolhida
-        segundaOpcao.disabled = opcaoEscolhida
-        terceiraOpcao.disabled = opcaoEscolhida
-        quartaOpcao.disabled = opcaoEscolhida
-
+    function habilitarOpcoes(valor) {
+        document.getElementById('primeiraOpcao').disabled = !valor;
+        document.getElementById('segundaOpcao').disabled = !valor;
+        document.getElementById('terceiraOpcao').disabled = !valor;
+        document.getElementById('quartaOpcao').disabled = !valor;
     }
 
-    function avancar() {
-        btnProx.disabled = true
-        btnSubmeter.disabled = false
+    function proximoPiso() {
+        document.getElementById('btnProx').disabled = true;
+        document.getElementById('btnSubmeter').disabled = false;
 
-        desmarcarRadioButtons()
-        limparCoresBackgroundOpcoes()
+        limparSelecao();
+        limparCores();
 
-        // piso++
-        pisoAtual++;
-        document.getElementById('spanPisoAtual').innerHTML = pisoAtual;
+        piso++;
+        document.getElementById('spanPisoAtual').innerHTML = piso;
+        questaoAtual++;
 
-
-        // questao++
-        numeroDaQuestaoAtual++;
-
-        if (numeroDaQuestaoAtual < quantidadeDeQuestoes) {
-            preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
+        if (questaoAtual < QUESTOES.length) {
+            carregarQuestao(questaoAtual);
         } else {
-            // ee a vida chegou a 0 ou acabaram os andares
-            finalizarJogo()
+            finalizar(false);
         }
     }
 
     function tentarNovamente() {
-        // atualiza a página
-        window.location.reload()
+        window.location.reload();
     }
 
-    function checarResposta() {
-        const questaoAtual = listaDeQuestoes[numeroDaQuestaoAtual]
-        const respostaQuestaoAtual = questaoAtual.alternativaCorreta
+    function verificarResposta(valor) {
+        const q = QUESTOES[questaoAtual];
+        const correta = q.alternativaCorreta;
 
-        const options = document.getElementsByName("option");
+        const inputCorreto = document.querySelector('input[value="' + correta + '"]');
+        const labelCorreto = inputCorreto.labels[0];
 
-        let alternativaCorreta = null
-        let respostaDoUsuario = null
-
-        // verifica se a resposta assinalada é correta
-        options.forEach((option) => {
-            if (option.value === respostaQuestaoAtual) {
-                alternativaCorreta = option.labels[0].id
-            }
-            if (option.checked) {
-                respostaDoUsuario = option.value
-            }
-        })
-
-        // lógica de vida/pontuação
-        if (respostaDoUsuario === respostaQuestaoAtual) {
-            document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
-            pontuacaoFinal++
-            certas++
+        if (valor === correta) {
+            labelCorreto.classList.add("text-success-with-bg");
         } else {
-            const wrongLabel = document.querySelector(`input[value="${respostaDoUsuario}"]`).labels[0].id;
+            const inputErrado = document.querySelector('input[value="' + valor + '"]');
+            const labelErrado = inputErrado.labels[0];
 
-            document.getElementById(wrongLabel).classList.add("text-danger-with-bg")
-            document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
-            vidaAtual -= danoPorErro;
-            // forçando a vida a não passar de 0
-            document.getElementById("spanVidaAtual").innerHTML = Math.max(0, vidaAtual);
-            tentativaIncorreta++
-            erradas++
+            labelErrado.classList.add("text-danger-with-bg");
+            labelCorreto.classList.add("text-success-with-bg");
+
+            vida = vida - DANO;
+            if (vida < 0) {
+                vida = 0;
+            }
+            document.getElementById('spanVidaAtual').innerHTML = vida;
         }
-        if (vidaAtual <= 0) {
-            gameOver();
+
+        if (vida <= 0) {
+            finalizar(true);
         }
     }
 
-    function gameOver() {
-        document.getElementById("spanVidaAtual").innerHTML = 0;
-        alert(`GAME OVER! Sua trágica jornada chegou ao fim. Andar: ${pisoAtual}.`);
+    function finalizar(morreu) {
+        if (morreu) {
+            alert("GAME OVER! Você morreu no Piso " + piso);
+        } else {
+            alert("Parabéns! Você completou todos os pisos!");
+        }
 
-        habilitarAlternativas(false);
-        btnSubmeter.disabled = true;
-        btnProx.disabled = true;
-        btnTentarNovamente.disabled = false;
+        habilitarOpcoes(false);
+        document.getElementById('btnSubmeter').disabled = true;
+        document.getElementById('btnProx').disabled = true;
+        document.getElementById('btnTentarNovamente').disabled = false;
+
         document.getElementById('jogo').classList.add("text-new-gray");
     }
 
+    function limparCores() {
+        const opcoes = document.getElementsByName("option");
 
-    function limparCoresBackgroundOpcoes() {
-        const options = document.getElementsByName("option");
-        options.forEach((option) => {
-            document.getElementById(option.labels[0].id).classList.remove("text-danger-with-bg")
-            document.getElementById(option.labels[0].id).classList.remove("text-success-with-bg")
-        })
-    }
-
-    function desmarcarRadioButtons() {
-        const options = document.getElementsByName("option");
-        for (let i = 0; i < options.length; i++) {
-            options[i].checked = false;
+        for (let i = 0; i < opcoes.length; i++) {
+            const label = opcoes[i].labels[0];
+            label.classList.remove("text-danger-with-bg");
+            label.classList.remove("text-success-with-bg");
         }
     }
 
-    function finalizarJogo() {
-        let textoParaMensagemFinal = null
-        let classComCoresParaMensagemFinal = null
-        const porcentagemFinalDeAcertos = pontuacaoFinal / quantidadeDeQuestoes
+    function limparSelecao() {
+        const opcoes = document.getElementsByName("option");
 
-        if (porcentagemFinalDeAcertos <= 0.3) {
-            textoParaMensagemFinal = "Parece que você não estudou..."
-            classComCoresParaMensagemFinal = "text-danger-with-bg"
+        for (let i = 0; i < opcoes.length; i++) {
+            opcoes[i].checked = false;
         }
-        else if (porcentagemFinalDeAcertos > 0.3 && porcentagemFinalDeAcertos < 0.9) {
-            textoParaMensagemFinal = "Pode melhorar na próxima, hein!"
-            classComCoresParaMensagemFinal = "text-warning-with-bg"
-        }
-        else if (porcentagemFinalDeAcertos >= 0.9) {
-            textoParaMensagemFinal = "Uau, parabéns!"
-            classComCoresParaMensagemFinal = "text-success-with-bg"
-        }
-
-        textoParaMensagemFinal += "<br> Você acertou " + Math.round((porcentagemFinalDeAcertos) * 100) + "% das questões."
-
-        if (vidaAtual > 0) {
-            document.getElementById('msgFinal').innerHTML = textoParaMensagemFinal
-            document.getElementById('msgFinal').classList.add(classComCoresParaMensagemFinal)
-        } else {
-            document.getElementById('msgFinal').innerHTML = "Você terminou as escolhas, mas sua vida acabou! Tente novamente."
-        }
-
-        document.getElementById('spanPontuacaoFinal').innerHTML = pontuacaoFinal
-
-        document.getElementById('jogo').classList.add("text-new-gray")
-
-        btnProx.disabled = true
-        btnSubmeter.disabled = true
-        btnTentarNovamente.disabled = false
-
     }
 </script>
