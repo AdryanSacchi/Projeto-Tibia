@@ -18,6 +18,14 @@
     color: gold !important;
 }
 
+.sub-navbar a{
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+
+
 .sub-navbar a:link,
 .sub-navbar a:visited,
 .sub-navbar a:active {
@@ -25,20 +33,13 @@
     text-decoration: none; 
 }
 
-.sub-navbar a{
-    display: flex;
-    width: 100%;
-    height: 100%;
-}
-
 .sub-navbar a:hover {
     color: gold; 
     text-decoration: none;
 }
 
-/* box geral da page*/
 body {
-    background-image: url(assets/imgs/background_page.png);
+    background-image: url(/Repositório-Técnico/public/assets/imgs/background_page.png);
     background-color: #000;
     background-size: cover;
     background-attachment: fixed;
@@ -92,6 +93,7 @@ body {
     font-weight: bold;
     color: gold;
     text-shadow: 1px 1px 2px #000;
+     text-shadow: 1px 1px 2px #000;
 }
 
 .box-maps {
@@ -131,6 +133,7 @@ body {
     text-align: center;
     background-color: rgba(0, 0, 0, 0.4); 
     cursor: pointer;
+     text-shadow: 1px 1px 2px #000;
     
 }
 
@@ -170,6 +173,7 @@ body {
     font-weight: bold;
     text-transform: uppercase;
     cursor: pointer;
+     text-shadow: 1px 1px 2px #000; 
 }
 
 .sub-navbar {
@@ -220,13 +224,14 @@ body {
     border-bottom: 1px solid #993333;
 }
 
-/* Titulo - explicação sobre a historia */
+/* Titulo - Equipamento*/
 .history .main-title {
     font-size: 40px;
     color: #fff;
-    margin: 20px 10px;
-    padding-bottom: 5px;
-    border-bottom: 1px solid #993333;
+    margin: 20px 25px;
+    padding-top: 5px;
+    border-top: 1px solid #993333;
+    text-shadow: 1px 1px 2px #000;
 }
 
 /* Sidebar direita Mapa/Monstro */
@@ -262,90 +267,81 @@ body {
     margin-right: 40px;
 }
 
-/* TODA A PARTE DE TEXTO DA PARTE CENTRAL DA PAGE */
-
-.content-box.history {
-    padding: 15px;
-}
+/* estilização da lista */
 
 .box-history {
     display: flex;
-    gap: 20px; 
-    align-items: flex-start; 
-    flex-direction: column;
+    /* flex-direction: column; */
+    gap: 30px;
+    padding: 10px;
+}
+
+/* estilização do card */
+.card-itens {
+    background-color: rgba(30, 0, 0, 0.7);
+    border: 1px solid #990000;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    gap: 8px; 
+}
+
+/* nome do monstro */
+.header-classes {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding-bottom: 5px;
+    flex-direction: column-reverse;
     
 }
 
-/* ocupação do espaço de texto(2/3) */
-.box-descricao {
-    flex: 2;
-    padding-right: 10px;
+.nome-item {
+    margin: 0;
+    font-size: 17px;
+    color: #ffcc00;
+    font-family:  Arial, sans-serif;
 }
 
-/* ocupação do espaço de imagem (1/3) */
-.img-container-meio {
-    flex: 1; 
-}
-
-/* ajuste da imagem dentro do container + borda na img */
-.img-container-meio .history-image {
-    max-width: 100%; 
-    height: auto;
-    border: 1px solid #666; 
-}
-/* trocando o lado da imagem */
-.box-history p{
-    flex-direction: row-reverse;
+/* imagem monstro */
+.classes-img-lista {
+    width: 300px;
+    height: 300px;
 }
 
 
-/* Estiliza o contêiner dos itens para usar o Grid */
-.item-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 10px;
-    justify-items: center; 
+
+/* descrição monstros */
+.itens-details {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 30px;
+    font-size: 14px;
+    color: #ccc;
+    padding: 20px ;
+    
+}
+
+/* xp dos monstros */
+.monster-xp {
+    display: flex;
     align-items: center;
-    width: 100%; 
 }
 
-/* separando os itens */
-.item-grid .grid-item {
-    margin-bottom: 20px;
-    margin-top: 20px;
-    width: 60px; 
-    height: 60px; 
-    border: 1px solid #999;
-    background-color: #000000;
+/* descrição monstros */
+.descricao-classes p {
+    font-size: 15px;
+    line-height: 1.4;
+    color: #f0f0f0;
+    padding-top: 30px;
+    /* width: 80%; */
+
+    
 }
 
-.img-container-meio {
-    width: 100%; 
+.descricao-boss {
+    font-size: 1.2em; 
+    font-style: italic;
     text-align: center;
 }
 
-.item-grid2 {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    justify-items: auto; 
-    align-items: auto;
-    width: 30%;
-    margin: 15px;
-}
-
-.item-grid2 .grid-item {
-    margin-top: 20px;
-    width: 400px; 
-    height: 300px; 
-    border: 1px solid #999;
-    background-color: #000000;
-}
-
-.item-grid3 .grid-item {
-    margin-top: 20px;
-    width: 400px; 
-    height: 300px; 
-    border: 1px solid #999;
-    background-color: #000000;
-}

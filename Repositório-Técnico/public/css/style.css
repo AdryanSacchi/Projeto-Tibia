@@ -5,7 +5,6 @@
 .login-box h2 a:visited,
 .login-box h2 a:active {
     color: gold; 
-    
     text-decoration: none; 
 }
 
@@ -14,13 +13,12 @@
     text-decoration: none;
 }
 
-.selected {
-    color: gold !important;
+.sub-navbar a:active{
+    color: gold;
 }
 
 .sub-navbar a:link,
-.sub-navbar a:visited,
-.sub-navbar a:active {
+.sub-navbar a:visited{
     color: aliceblue; 
     text-decoration: none; 
 }
@@ -36,8 +34,9 @@
     text-decoration: none;
 }
 
+/* box geral da page*/
 body {
-    background-image: url(assets/imgs/background_page.png);
+    background-image: url(/Repositório-Técnico/public/assets/imgs/background_page.png);
     background-color: #000;
     background-size: cover;
     background-attachment: fixed;
@@ -91,7 +90,6 @@ body {
     font-weight: bold;
     color: gold;
     text-shadow: 1px 1px 2px #000;
-     text-shadow: 1px 1px 2px #000;
 }
 
 .box-maps {
@@ -131,7 +129,6 @@ body {
     text-align: center;
     background-color: rgba(0, 0, 0, 0.4); 
     cursor: pointer;
-     text-shadow: 1px 1px 2px #000;
     
 }
 
@@ -171,7 +168,6 @@ body {
     font-weight: bold;
     text-transform: uppercase;
     cursor: pointer;
-     text-shadow: 1px 1px 2px #000; 
 }
 
 .sub-navbar {
@@ -199,6 +195,7 @@ body {
     flex-direction: column;
     gap: 10px;
     position: relative;
+    overflow-x: hidden;
 }
 /* background box central */
 .content-box {
@@ -222,14 +219,13 @@ body {
     border-bottom: 1px solid #993333;
 }
 
-/* Titulo - Equipamento*/
+/* Titulo - explicação sobre a historia */
 .history .main-title {
     font-size: 40px;
     color: #fff;
     margin: 20px 10px;
     padding-bottom: 5px;
     border-bottom: 1px solid #993333;
-     text-shadow: 1px 1px 2px #000;
 }
 
 /* Sidebar direita Mapa/Monstro */
@@ -265,74 +261,88 @@ body {
     margin-right: 40px;
 }
 
-/* estilização da lista */
+/* TODA A PARTE DE TEXTO DA PARTE CENTRAL DA PAGE */
+
+.content-box.history {
+    padding: 15px;
+}
 
 .box-history {
     display: flex;
-    flex-direction: column;
-    gap: 15px;
-    padding: 10px;
+    gap: 20px; 
+    align-items: flex-start; 
 }
 
-/* estilização do card */
-.card-itens {
-    background-color: rgba(30, 0, 0, 0.7);
-    border: 1px solid #990000;
-    padding: 10px;
-    display: flex;
-    flex-direction: row;
-    gap: 8px; 
+/* ocupação do espaço de texto(2/3) */
+.box-descricao {
+    flex: 2;
+    padding-right: 10px;
 }
 
-/* nome do monstro */
-.header-itens {
-    display: flex;
+/* ocupação do espaço de imagem (1/3) */
+.img-container-meio {
+    flex: 1; 
+}
+
+/* ajuste da imagem dentro do container + borda na img */
+.img-container-meio .history-image {
+    max-width: 100%; 
+    height: auto;
+    border: 1px solid #666; 
+}
+/* trocando o lado da imagem */
+.box-history p{
+    flex-direction: row-reverse;
+}
+
+
+/* Estiliza o contêiner dos itens para usar o Grid */
+.item-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    justify-items: center; 
     align-items: center;
-    gap: 15px;
-    padding-bottom: 5px;
-    flex-direction: column-reverse;
-    
+    width: 100%; 
 }
 
-.nome-item {
-    margin: 0;
-    font-size: 17px;
-    color: #ffcc00;
-    font-family:  Arial, sans-serif;
+/* separando os itens */
+.item-grid .grid-item {
+    margin-bottom: 20px;
+    margin-top: 20px;
+    width: 60px; 
+    height: 60px; 
+    border: 1px solid #999;
+    background-color: #000000;
 }
 
-/* imagem monstro */
-.item-img-lista {
-    width: 64px;
-    height: 64px;
-    border: 2px solid #ffcc00;
-    background-color: #000;
+.img-container-meio {
+    width: 100%; 
+    text-align: center;
 }
 
-
-
-/* descrição monstros */
-.itens-details {
-    display: flex;
-    flex-wrap: wrap; 
-    gap: 30px;
-    font-size: 14px;
-    color: #ccc;
-    padding: 20px ;
-    
+.item-grid2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    justify-items: auto; 
+    align-items: auto;
+    width: 30%;
+    margin: 15px;
 }
 
-/* xp dos monstros */
-.monster-xp {
-    display: flex;
-    align-items: center;
+.item-grid2 .grid-item {
+    margin-top: 20px;
+    width: 350px; 
+    height: 310px; 
+    border: 1px solid #999;
+    background-color: #000000;
 }
 
-/* descrição monstros */
-.descricao-item p {
-    font-size: 15px;
-    line-height: 1.4;
-    color: #f0f0f0;
-    padding-top: 30px;
-    
+.item-grid3 .grid-item {
+    margin-top: 20px;
+    width: 400px; 
+    height: 300px; 
+    border: 1px solid #999;
+    background-color: #000000;
 }

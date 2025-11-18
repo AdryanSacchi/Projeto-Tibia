@@ -9,13 +9,19 @@
     text-decoration: none; 
 }
 
-.selected {
-    color: gold !important;
-}
-
 .login-box h2 a:hover {
     color: gold;
     text-decoration: none;
+}
+
+.sub-navbar a{
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.selected {
+    color: gold !important;
 }
 
 .sub-navbar a:link,
@@ -25,20 +31,13 @@
     text-decoration: none; 
 }
 
-.sub-navbar a{
-    display: flex;
-    width: 100%;
-    height: 100%;
-}
-
 .sub-navbar a:hover {
     color: gold; 
     text-decoration: none;
 }
 
-/* box geral da page*/
 body {
-    background-image: url(assets/imgs/background_page.png);
+    background-image: url(/Repositório-Técnico/public/assets/imgs/background_page.png);
     background-color: #000;
     background-size: cover;
     background-attachment: fixed;
@@ -92,6 +91,7 @@ body {
     font-weight: bold;
     color: gold;
     text-shadow: 1px 1px 2px #000;
+     text-shadow: 1px 1px 2px #000;
 }
 
 .box-maps {
@@ -171,7 +171,7 @@ body {
     font-weight: bold;
     text-transform: uppercase;
     cursor: pointer;
-     text-shadow: 1px 1px 2px #000;
+     text-shadow: 1px 1px 2px #000; 
 }
 
 .sub-navbar {
@@ -222,14 +222,14 @@ body {
     border-bottom: 1px solid #993333;
 }
 
-/* Titulo - Bestiário*/
+/* Titulo - Equipamento*/
 .history .main-title {
     font-size: 40px;
     color: #fff;
-    margin: 20px 10px;
-    padding-bottom: 5px;
-    border-bottom: 1px solid #993333;
-     text-shadow: 1px 1px 2px #000;
+    margin: 20px 25px;
+    padding-top: 5px;
+    border-top: 1px solid #993333;
+    text-shadow: 1px 1px 2px #000;
 }
 
 /* Sidebar direita Mapa/Monstro */
@@ -269,13 +269,13 @@ body {
 
 .box-history {
     display: flex;
-    flex-direction: column;
-    gap: 15px;
+    /* flex-direction: column; */
+    gap: 30px;
     padding: 10px;
 }
 
 /* estilização do card */
-.espacamento {
+.card-itens {
     background-color: rgba(30, 0, 0, 0.7);
     border: 1px solid #990000;
     padding: 10px;
@@ -285,8 +285,7 @@ body {
 }
 
 /* nome do monstro */
-.header-monstro {
-    margin-top: 5px;
+.header-classes {
     display: flex;
     align-items: center;
     gap: 15px;
@@ -295,7 +294,7 @@ body {
     
 }
 
-.nome-monstro {
+.nome-item {
     margin: 0;
     font-size: 17px;
     color: #ffcc00;
@@ -303,18 +302,15 @@ body {
 }
 
 /* imagem monstro */
-.monstro-img-lista {
-    margin-left: 10px;
-    width: 70px;
-    height: 70px;
-    border: 2px solid #ffcc00;
-    background-color: #000;
+.classes-img-lista {
+    width: 300px;
+    height: 300px;
 }
 
 
 
 /* descrição monstros */
-.monster-details {
+.itens-details {
     display: flex;
     flex-wrap: wrap; 
     gap: 30px;
@@ -331,10 +327,12 @@ body {
 }
 
 /* descrição monstros */
-.descricao-monstro p {
+.descricao-classes p {
     font-size: 15px;
     line-height: 1.4;
     color: #f0f0f0;
     padding-top: 30px;
+    /* width: 80%; */
+
     
 }

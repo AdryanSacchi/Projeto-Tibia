@@ -20,8 +20,29 @@ span{
     color: aliceblue;
 }
 
+img{
+    display: flex;
+    max-width: 15%;
+    max-height: 15%;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.icons-quiz{
+    display: flex;
+}
+
+.icons-quiz span{
+    font-size: 22px;
+    font-weight: bold;
+    padding: 4px;
+    display: flex;
+    margin-top: 7%;
+    
+}
+
 body {
-    background-image: url(assets/imgs/wallpaper-mageoutfit.png);
+    background-image: url(/Repositório-Técnico/public/assets/imgs/wallpaper-mageoutfit.png);
     background-color: #000;
     background-size: cover;
     background-attachment: fixed;
@@ -54,13 +75,14 @@ body .pontuacaoEJogo{
 } */
 
 .pontuacaoJust{
+    background-color: #1f1d1d;
     display: flex;
     flex-direction: column;
     max-width: 40%;
     max-height: 80%;
     justify-content: flex-end;
-    box-shadow: 4px 4px 5px #000;
-    border-radius: 20px;
+    box-shadow: 4px 4px 4px 5px #000;
+    border-radius: 20px 20px 20px 20px;
 }
 
 
@@ -74,6 +96,12 @@ button {
     border-radius: 20px;
     display: flex;
     flex-direction: column;
+}
+
+.flex-colunar img{
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
 }
 
 .width-fit-content {

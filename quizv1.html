@@ -57,9 +57,10 @@
             </div>
 
             <div id="botoes" class="flex-colunar padding-8">
-                <button onclick="submeter()" id="btnSubmeter">Ja me decidi!</button>
-                <button onclick="avancar()" id="btnProx" disabled>Avançar para o próximo andar</button>
-                <button onclick="tentarNovamente()" id="btnTentarNovamente" disabled>Vou tentar mais uma vez...</button>
+                <button onclick="submeter()" id="btnSubmeter">Submeter resposta</button>
+                <button onclick="avancar()" id="btnProx" disabled>Avançar para próxima questão</button>
+                <!-- <button onclick="finalizar()" id="btnConcluir" disabled>Finalizar Quiz</button> -->
+                <button onclick="tentarNovamente()" id="btnTentarNovamente" disabled>Tentar novamente</button>
             </div>
 
         </div>
@@ -76,7 +77,7 @@
             alternativaB: "ir pelo Caminho totalmente escuro",
             alternativaC: "ir pela ponte quebrada",
             alternativaD: "aguardar (?)",
-            alternativaCorreta: "alternativaC"
+            alternativaCorreta: "alternativaD"
         },
 
         {
@@ -85,7 +86,7 @@
             alternativaB: "Virar a esquerda",
             alternativaC: "Virar a direita",
             alternativaD: "Pegar a tocha que está na parede e aguardar",
-            alternativaCorreta: "alternativaB"
+            alternativaCorreta: "alternativaD"
         },
 
         {
@@ -112,23 +113,22 @@
             alternativaB: "Vou em direção ao Sapo",
             alternativaC: "Tento enfrentar o esquilo",
             alternativaD: "Vou roubar o taco do zumbi",
-            alternativaCorreta: "alternativaB"
+            alternativaCorreta: "alternativaD"
         }
+
+
+
+
     ]
 
-    // variáveis globais    
+    // variáveis globais    
     let numeroDaQuestaoAtual = 0
     let pontuacaoFinal = 0
     let tentativaIncorreta = 0
     let certas = 0
     let erradas = 0
     let quantidadeDeQuestoes = listaDeQuestoes.length
-
-    // adicionado contadores de vida, piso e o dano por erro
-
-    let vidaAtual = 100;
-    let pisoAtual = 1;
-    const danoPorErro = 25;
+    // let isUltima = numeroDaQuestaoAtual == quantidadeDeQuestoes-1 ? true : false
 
     function onloadEsconder() {
         document.getElementById('pontuacao').style.display = "none"
@@ -141,10 +141,6 @@
         document.getElementById('btnIniciarQuiz').style.display = "none"
 
         document.getElementById('qtdQuestoes').innerHTML = quantidadeDeQuestoes
-
-        // alteração do display da vida e do piso
-        document.getElementById('spanVidaAtual').innerHTML = vidaAtual;
-        document.getElementById('spanPisoAtual').innerHTML = pisoAtual;
 
         preencherHTMLcomQuestaoAtual(0)
 
@@ -160,7 +156,7 @@
         numeroDaQuestaoAtual = index
         console.log("questaoAtual")
         console.log(questaoAtual)
-        document.getElementById("spanNumeroDaQuestaoAtual").innerHTML = pisoAtual
+        document.getElementById("spanNumeroDaQuestaoAtual").innerHTML = Number(index) + 1 // ajustando porque o index começa em 0
         document.getElementById("spanQuestaoExibida").innerHTML = questaoAtual.pergunta;
         document.getElementById("labelOpcaoUm").innerHTML = questaoAtual.alternativaA;
         document.getElementById("labelOpcaoDois").innerHTML = questaoAtual.alternativaB;
@@ -169,7 +165,8 @@
     }
 
     function submeter() {
-        const options = document.getElementsByName("option");
+        const options = document.getElementsByName("option"); // recupera alternativas no html
+
         let hasChecked = false
         for (let i = 0; i < options.length; i++) {
             if (options[i].checked) {
@@ -181,12 +178,6 @@
         if (!hasChecked) {
             alert("Tem certeza de que vai ficar ai parado?")
         } else {
-            // adicionei o fim do jogo
-            if (vidaAtual <= 0) {
-                gameOver();
-                return;
-            }
-
             btnSubmeter.disabled = true
             btnProx.disabled = false
 
@@ -211,22 +202,16 @@
         btnSubmeter.disabled = false
 
         desmarcarRadioButtons()
-        limparCoresBackgroundOpcoes()
 
-        // piso++
-        pisoAtual++;
-        document.getElementById('spanPisoAtual').innerHTML = pisoAtual;
-
-
-        // questao++
-        numeroDaQuestaoAtual++;
-
-        if (numeroDaQuestaoAtual < quantidadeDeQuestoes) {
+        if (numeroDaQuestaoAtual < quantidadeDeQuestoes - 1) {
+            preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
+        } else if (numeroDaQuestaoAtual == quantidadeDeQuestoes - 1) {
+            alert("Atenção... você está chegando ao fim.")
             preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
         } else {
-            // ee a vida chegou a 0 ou acabaram os andares
             finalizarJogo()
         }
+        limparCoresBackgroundOpcoes()
     }
 
     function tentarNovamente() {
@@ -235,56 +220,40 @@
     }
 
     function checarResposta() {
-        const questaoAtual = listaDeQuestoes[numeroDaQuestaoAtual]
-        const respostaQuestaoAtual = questaoAtual.alternativaCorreta
+        const questaoAtual = listaDeQuestoes[numeroDaQuestaoAtual] // questão atual 
+        const respostaQuestaoAtual = questaoAtual.alternativaCorreta // qual é a resposta correta da questão atual
 
-        const options = document.getElementsByName("option");
+        const options = document.getElementsByName("option"); // recupera alternativas no html
 
-        let alternativaCorreta = null
-        let respostaDoUsuario = null
+        let alternativaCorreta = null // variável para armazenar a alternativa correta
 
-        // verifica se a resposta assinalada é correta
         options.forEach((option) => {
             if (option.value === respostaQuestaoAtual) {
+                console.log("alternativaCorreta está no componente: " + alternativaCorreta)
                 alternativaCorreta = option.labels[0].id
-            }
-            if (option.checked) {
-                respostaDoUsuario = option.value
             }
         })
 
-        // lógica de vida/pontuação
-        if (respostaDoUsuario === respostaQuestaoAtual) {
-            document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
-            pontuacaoFinal++
-            certas++
-        } else {
-            const wrongLabel = document.querySelector(`input[value="${respostaDoUsuario}"]`).labels[0].id;
+        // verifica se resposta assinalada é correta
+        options.forEach((option) => {
+            if (option.checked === true && option.value === respostaQuestaoAtual) {
+                document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
+                pontuacaoFinal++
+                certas++
+                document.getElementById("spanCertas").innerHTML = certas
+                numeroDaQuestaoAtual++
+            } else if (option.checked && option.value !== respostaQuestaoAtual) {
+                const wrongLabelId = option.labels[0].id
 
-            document.getElementById(wrongLabel).classList.add("text-danger-with-bg")
-            document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
-            vidaAtual -= danoPorErro;
-            // forçando a vida a não passar de 0
-            document.getElementById("spanVidaAtual").innerHTML = Math.max(0, vidaAtual);
-            tentativaIncorreta++
-            erradas++
-        }
-        if (vidaAtual <= 0) {
-            gameOver();
-        }
+                document.getElementById(wrongLabelId).classList.add("text-danger-with-bg")
+                document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
+                tentativaIncorreta++
+                erradas++
+                document.getElementById("spanErradas").innerHTML = erradas
+                numeroDaQuestaoAtual++
+            }
+        })
     }
-
-    function gameOver() {
-        document.getElementById("spanVidaAtual").innerHTML = 0;
-        alert(`GAME OVER! Sua trágica jornada chegou ao fim. Andar: ${pisoAtual}.`);
-
-        habilitarAlternativas(false);
-        btnSubmeter.disabled = true;
-        btnProx.disabled = true;
-        btnTentarNovamente.disabled = false;
-        document.getElementById('jogo').classList.add("text-new-gray");
-    }
-
 
     function limparCoresBackgroundOpcoes() {
         const options = document.getElementsByName("option");
@@ -321,19 +290,16 @@
 
         textoParaMensagemFinal += "<br> Você acertou " + Math.round((porcentagemFinalDeAcertos) * 100) + "% das questões."
 
-        if (vidaAtual > 0) {
-            document.getElementById('msgFinal').innerHTML = textoParaMensagemFinal
-            document.getElementById('msgFinal').classList.add(classComCoresParaMensagemFinal)
-        } else {
-            document.getElementById('msgFinal').innerHTML = "Você terminou as escolhas, mas sua vida acabou! Tente novamente."
-        }
 
+        document.getElementById('msgFinal').innerHTML = textoParaMensagemFinal
+        document.getElementById('msgFinal').classList.add(classComCoresParaMensagemFinal)
         document.getElementById('spanPontuacaoFinal').innerHTML = pontuacaoFinal
 
         document.getElementById('jogo').classList.add("text-new-gray")
 
         btnProx.disabled = true
         btnSubmeter.disabled = true
+        // btnConcluir.disabled = true
         btnTentarNovamente.disabled = false
 
     }
