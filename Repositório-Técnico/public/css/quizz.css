@@ -42,7 +42,7 @@ img{
 }
 
 body {
-    background-image: url(/assets/imgs/wallpaper-mageoutfit.png);
+    background-image: url(../assets/imgs/wallpaper-mageoutfit.png);
     background-color: #000;
     background-size: cover;
     background-attachment: fixed;

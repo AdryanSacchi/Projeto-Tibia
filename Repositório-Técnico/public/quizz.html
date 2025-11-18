@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exploração</title>
+    <title>Dungeon</title>
     <link rel="stylesheet" href="css/quizz.css">
 </head>
 
@@ -21,7 +21,7 @@
             </div>
         </div>
 
-        <div id="jogo" class="width-fit-content flex-colunar border-secondary" style="display: none;">
+        <div id="jogo" class=" flex-colunar border-secondary" style="display: none;">
 
             <div id="infoQuestao" class="padding-8">
                 <span>Piso atual: <span id="spanNumeroDaQuestaoAtual"></span> de <span id="qtdQuestoes"></span>
@@ -69,7 +69,7 @@
 <script>
     const QUESTOES = [
         {
-            pergunta: "Você acabou de entrar em uma Masmorra...",
+            pergunta: "Você acabou de entrar em uma Masmorra, logo a sua frente você encntra algumas opções para prosseguir:",
             alternativaA: "ir pelo caminho Fácil (hehe)",
             alternativaB: "ir pelo Caminho totalmente escuro",
             alternativaC: "ir pela ponte quebrada",
@@ -77,15 +77,15 @@
             alternativaCorreta: "alternativaC"
         },
         {
-            pergunta: "Ok, parece que subimos um andar... Você escuta um grito...",
+            pergunta: "Ok, parece que subimos um andar.. Você escuta um grito vindo do fundo do corredor, sem ter muito tempo para pensar, precisa tomar uma decisão:",
             alternativaA: "Correr em direção ao grito",
-            alternativaB: "Virar a esquerda",
-            alternativaC: "Virar a direita",
+            alternativaB: "Se esconder",
+            alternativaC: "Virar a direita onde há algumas tochas",
             alternativaD: "Pegar a tocha que está na parede e aguardar",
             alternativaCorreta: "alternativaB"
         },
         {
-            pergunta: "Parece que você sobreviveu a mais um andar, a sua frente 3 baús...",
+            pergunta: "Parece que você sobreviveu a mais um andar, será que agora é um andar de sorte para você ? Na sua frente você ve 3 baús, o mais a esquerda esta coberto de lodo, o do meio tem chamas saindo em volta dele e o da direita parece um baú normal,gostaria de abrir um deles?",
             alternativaA: "Sim, quero abrir o baú da esquerda.",
             alternativaB: "Sim, quero abrir o baú do meio.",
             alternativaC: "Sim, quero abrir o baú da direita.",
@@ -101,13 +101,37 @@
             alternativaCorreta: "alternativaD"
         },
         {
-            pergunta: "Agora tem 3 monstros na sua frente...",
+            pergunta: "Nessa próxima etapa você deu de cara com 3 monstros, um esquilo com olhos vermelhos, zumbi com um taco na mão e um sapo grande com uma espada nas costas, o que deseja fazer?",
             alternativaA: "Quero correr, chega disso!",
             alternativaB: "Vou em direção ao Sapo",
             alternativaC: "Tento enfrentar o esquilo",
             alternativaD: "Vou roubar o taco do zumbi",
             alternativaCorreta: "alternativaB"
-        }
+        },
+        {
+            pergunta: "Parece que temos um sortudo por aqui, mas isso vai durar até quando ? Selecione um botão, AZUL, VERDE OU VERMELHO?",
+            alternativaA: "AZUL",
+            alternativaB: "VERDE",
+            alternativaC: "VERMELHO",
+            alternativaD: "TODOS",
+            alternativaCorreta: "alternativaB"
+        },
+        {
+            pergunta: "Ja deve estar cansado de tudo isso, por que não se deita ? Nesse piso temos uma cama perto de uma fogueira",
+            alternativaA: "Vou me deitar",
+            alternativaB: "Vou sentar ao lado da fogueira",
+            alternativaC: "Quero checar em baixo da cama",
+            alternativaD: "Recuso a oferta e sigo meu caminho",
+            alternativaCorreta: "alternativaD"
+        },
+        {
+            pergunta: "Parabéns por ter chego até aqui, nosso soberano Azariel te da as boas-vindas. (Você ve uma figura monstruosa bem a sua frente lhe dando passagem para um baú final)",
+            alternativaA: "Pulo a primeira janela que encontro",
+            alternativaB: "Caminho em direção ao baú",
+            alternativaC: "Chamo Azariel pra a briga (sério isso?)",
+            alternativaD: "Fico encarando Azariel",
+            alternativaCorreta: "alternativaA"
+        },
     ];
 
     let questaoAtual = 0;
@@ -232,7 +256,7 @@
         if (morreu) {
             alert("GAME OVER! Você morreu no Piso " + piso);
         } else {
-            alert("Parabéns! Você completou todos os pisos!");
+            alert("Parabéns! Você completou todos os pisos!(talvez não inteiro)");
         }
 
         habilitarOpcoes(false);

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tibia</title>
+    <title>Login</title>
     <link rel="stylesheet" href="css/login.css">
 </head>
 
@@ -22,15 +22,15 @@
                 <section class="content-box news">
                     <h3 class="box-title">Comece sua jornada</h3>
                     <span class="text-email">Email:
-                        <input class="input-email" type="text" id="input_email">
+                        <input class="input_email" type="text" id="input_email">
                     </span>
-
                     <span class="text-senha">Senha:
-                        <input class="input-senha" type="password" id="input-senha">
+                        <input class="input_senha" type="password" id="input_senha">
+                        <div id="div_mensagem"></div>
                     </span>
                     <li> <a href="create-account.html">Crie sua conta</a></li>
                     <div class="botaoLogin">
-                        <button onclick="login()">Login</button>
+                        <button onclick="Entrar()">Login</button>
                     </div>
             </div>
             </section>
@@ -43,3 +43,49 @@
 </body>
 
 </html>
+<script>
+
+    function Entrar() {
+        var emailFixo = "tibia@gmail.com";
+        var senhaFixa = "Batata1@";
+
+        var login = input_email.value.trim();
+        var senha = input_senha.value;
+
+        div_mensagem.style.color = "";
+        div_mensagem.innerHTML = "";
+        var validado = true;
+        var sucesso = "green";
+        var falhou = "red"
+
+
+        if (login == "" && senha == "") {
+            div_mensagem.innerHTML = `Por favor, preencha todos os campos.`
+            div_mensagem.style.color = falhou;
+            validado = false;
+        } else if (login === "") {
+            div_mensagem.innerHTML = 'O e-mail é obrigatório';
+            div_mensagem.style.color = falhou;
+            validado = false;
+        } else if (senha === "") {
+            div_mensagem.innerHTML = 'A senha é obrigatória';
+            div_mensagem.style.color = falhou;
+            validado = false;
+        }
+
+        if (validado) {
+            if (login === emailFixo && senha === senhaFixa) {
+                div_mensagem.innerHTML = "Login realizado com sucesso!"
+                div_mensagem.style.color = sucesso;
+                window.location.href = "dashboard.html";
+            } else {
+                div_mensagem.innerHTML = "Seu e-mail ou senha estão incorretos. Tente novamente."
+                div_mensagem.style.color = falhou;
+            }
+        }
+
+
+    }
+
+
+</script>

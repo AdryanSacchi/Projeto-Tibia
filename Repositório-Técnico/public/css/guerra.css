@@ -38,7 +38,7 @@
 
 /* box geral da page*/
 body {
-    background-image: url(/assets/imgs/background_page.png);
+    background-image: url(../assets/imgs/background_page.png);
     background-color: #000;
     background-size: cover;
     background-attachment: fixed;

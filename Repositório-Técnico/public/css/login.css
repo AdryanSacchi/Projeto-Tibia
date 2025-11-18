@@ -8,7 +8,7 @@
 }
 
 body {
-    background-image: url(/assets/imgs/mapanovovfinalv3.png);
+    background-image: url(../assets/imgs/mapanovovfinalv3.png);
     background-color: #00000059;
     background-size: auto;
     /* background-attachment: fixed; */
@@ -195,7 +195,7 @@ main {
     border-bottom: 1px solid #ffffff;
 }
 
-.input-senha{
+.input_senha{
     color: aliceblue;
     background-color: #111111;
     margin-left: 91px;
@@ -212,7 +212,7 @@ main {
     display: inline-block;
 }
 
-.input-email{
+.input_email{
     color: aliceblue;
     background-color: #111111;
     margin-left: 97px;
