@@ -37,48 +37,107 @@
 
 </html>
 <script>
-
     function Entrar() {
-        var emailFixo = "tibia@gmail.com";
-        var senhaFixa = "Batata1@";
 
-        var login = input_email.value.trim();
-        var senha = input_senha.value;
+        var emailVar = input_email.value;
+        var senhaVar = input_senha.value;
 
-        div_mensagem.style.color = "";
-        div_mensagem.innerHTML = "";
-        var validado = true;
-        var sucesso = "green";
-        var falhou = "red"
-
-
-        if (login == "" && senha == "") {
-            div_mensagem.innerHTML = `Por favor, preencha todos os campos.`
-            div_mensagem.style.color = falhou;
-            validado = false;
-        } else if (login === "") {
-            div_mensagem.innerHTML = 'O e-mail é obrigatório';
-            div_mensagem.style.color = falhou;
-            validado = false;
-        } else if (senha === "") {
-            div_mensagem.innerHTML = 'A senha é obrigatória';
-            div_mensagem.style.color = falhou;
-            validado = false;
+        if (emailVar == "" || senhaVar == "") {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+            return false;
         }
 
-        if (validado) {
-            if (login === emailFixo && senha === senhaFixa) {
-                div_mensagem.innerHTML = "Login realizado com sucesso!"
-                div_mensagem.style.color = sucesso;
-                window.location.href = "dashboard.html";
+        console.log("FORM LOGIN: ", emailVar);
+        console.log("FORM SENHA: ", senhaVar);
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.ID_USUARIO = json.id;
+                    sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
+
+                    setTimeout(function () {
+                        window.location = "quizz.html";
+                    }, 1000); // apenas para exibir o loading
+
+                });
+
             } else {
-                div_mensagem.innerHTML = "Seu e-mail ou senha estão incorretos. Tente novamente."
-                div_mensagem.style.color = falhou;
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    finalizarAguardar(texto);
+                });
             }
-        }
 
+        }).catch(function (erro) {
+            console.log(erro);
+        })
 
+        return false;
     }
+
+    // function Entrar() {
+    //     var emailFixo = "tibia@gmail.com";
+    //     var senhaFixa = "Batata1@";
+
+    //     var login = input_email.value.trim();
+    //     var senha = input_senha.value;
+
+    //     div_mensagem.style.color = "";
+    //     div_mensagem.innerHTML = "";
+    //     var validado = true;
+    //     var sucesso = "green";
+    //     var falhou = "red"
+
+
+    //     if (login == "" && senha == "") {
+    //         div_mensagem.innerHTML = `Por favor, preencha todos os campos.`
+    //         div_mensagem.style.color = falhou;
+    //         validado = false;
+    //     } else if (login === "") {
+    //         div_mensagem.innerHTML = 'O e-mail é obrigatório';
+    //         div_mensagem.style.color = falhou;
+    //         validado = false;
+    //     } else if (senha === "") {
+    //         div_mensagem.innerHTML = 'A senha é obrigatória';
+    //         div_mensagem.style.color = falhou;
+    //         validado = false;
+    //     }
+
+    //     if (validado) {
+    //         if (login === emailFixo && senha === senhaFixa) {
+    //             div_mensagem.innerHTML = "Login realizado com sucesso!"
+    //             div_mensagem.style.color = sucesso;
+    //             window.location.href = "dashboard.html";
+    //         } else {
+    //             div_mensagem.innerHTML = "Seu e-mail ou senha estão incorretos. Tente novamente."
+    //             div_mensagem.style.color = falhou;
+    //         }
+    //     }
+
+
+    // }
 
 
 </script>

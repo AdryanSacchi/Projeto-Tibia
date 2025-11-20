@@ -235,6 +235,12 @@
 
 
     function cadastrar() {
+        var senha = input_senha.value;
+        var nome = nome_input.value;
+        var confirmar = input_confirmar.value;
+        var email = email_input.value;
+        var servidor = select_servidor.value;
+
         if (
             !nomeInvalido &&
             !emailInvalido &&
@@ -249,6 +255,40 @@
         } else {
             span_verificar_campos.innerHTML = "⚠️ Preencha todos os campos corretamente.";
         }
+        fetch("/usuarios/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                nomeServer: nome,
+                emailServer: email,
+                senhaServer: senha,
+                servidorServer: servidor
+            }),
+        })
+            .then(function (resposta) {
+                console.log("resposta: ", resposta);
+
+                if (resposta.ok) {
+                    span_verificar_campos.innerHTML = "✅ Cadastro realizado com sucesso!";
+                    setTimeout(() => {
+                        window.location.replace("login.html")
+                    }, 2000);
+                } else {
+                    span_verificar_campos.innerHTML = "⚠️ Preencha todos os campos corretamente.";
+                }
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+
+            });
+
+        return false;
     }
+
+
 
 </script>
