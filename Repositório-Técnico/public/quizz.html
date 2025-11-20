@@ -16,21 +16,26 @@
             <input type="text" id="inputNick" placeholder="Ex: O Mago Claudio"
                 style="padding: 8px; border-radius: 5px; border: none;">
 
+
+
             <button id="btnIniciarQuiz" onclick="iniciarJogo()">Começar a Jornada</button>
         </div>
+        <button id="botaoVoltarNick" onclick="voltar()">Voltar</button>
 
         <div id="pontuacao" class="flex-colunar" style="display: none;">
             <div id="pontuacaoDuranteJogo" class="icons-quiz">
-                <div id="painelAtributos" class="padding-8" style="color: white; font-size: 14px; margin-top: 10px;">
+                <div id="painelAtributos" class="padding-8 font-size: 10px"
+                    style="color: white; font-size: 14px; margin-top: 10px;">
 
-                    <div style="margin-bottom: 5px; border-bottom: 1px solid gray; padding-bottom: 5px;">
+                    <div
+                        style="margin-bottom: 5px; border-bottom: 1px solid gray; padding-bottom: 5px; min-width: 10px;">
                         Heroi: <span id="spanNomeJogador" class="text-bold" style="color: gold;">---</span>
                     </div>
 
                     <div>Classe: <span id="spanClasse" class="text-bold">Nenhuma</span></div>
-                    <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 5px;">
-                        <span>💪 For: <span id="attrForca">0</span></span>
-                        <span>🦵 Agi: <span id="attrAgilidade">0</span></span>
+                    <div style="font-size: 25px;" id="atributos">
+                        <span>💪🏻 For: <span id="attrForca">0</span></span>
+                        <span>👟 Agi: <span id="attrAgilidade">0</span></span>
                         <span>🧠 Int: <span id="attrInteligencia">0</span></span>
                         <span>🍀 Sor: <span id="attrSorte">0</span></span>
                         <span>🛡️ Res: <span id="attrResistencia">0</span></span>
@@ -81,15 +86,21 @@
             <div id="botoes" class="flex-colunar padding-8">
                 <button onclick="submeter()" id="btnSubmeter">Ja me decidi!</button>
                 <button onclick="proximoPiso()" id="btnProx" disabled>Avançar para o próximo andar</button>
-                <button onclick="tentarNovamente()" id="btnTentarNovamente" disabled>Vou tentar mais uma vez...</button>
+                <button onclick="tentarNovamente()" id="btnTentarNovamente" disabled>RESULTADOS</button>
+                <button id="botaoVoltarQuiz" onclick="voltar()">Fugir</button>
             </div>
 
         </div>
+
     </div>
 </body>
 
 </html>
 <script>
+    function voltar() {
+        window.location.href = "index.html";
+    }
+
     const QUESTOES = [
         {
             pergunta: "Como um primeiro passo, você deve escolher sua classe:",
@@ -194,6 +205,8 @@
         if (nickDigitado == "") {
             alert("Por favor, digite um Nick para começar a jornada!");
             return;
+        } else {
+            document.getElementById('botaoVoltarNick').style.display = "none";
         }
 
         jogador.nome = nickDigitado;
@@ -271,7 +284,7 @@
     }
 
     function tentarNovamente() {
-        window.location.reload();
+        window.location.href = "dashboard.html";
     }
 
     function verificarResposta(resposta) {
@@ -312,7 +325,7 @@
         if (morreu) {
             alert("GAME OVER! O herói " + jogador.nome + " caiu no Piso " + piso);
         } else {
-            alert("Parabéns! " + jogador.nome + " completou todos os pisos!(talvez não inteiro)");
+            alert("Parabéns! " + jogador.nome + " completou todos os pisos! (talvez não inteiro)");
         }
 
         habilitarOpcoes(false);

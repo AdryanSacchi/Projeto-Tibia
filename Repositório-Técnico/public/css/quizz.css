@@ -40,7 +40,13 @@ img{
     font-weight: bold;
     padding: 4px;
     margin-top: 7%;
+    min-width: 15%;
     
+}
+
+.atributos {
+    display: flex;
+    flex-direction: row;
 }
 
 body {
@@ -68,6 +74,12 @@ body .pontuacaoEJogo{
     background-color: purple;    
 }
 
+.atributos {
+    display: flex;
+     gap: 5px; 
+     flex-wrap: wrap;
+      margin-top: 5px;
+}
 /* .pontuacaoJust .width-fit-content{
     display: flex;
     flex-direction: column;
@@ -80,7 +92,7 @@ body .pontuacaoEJogo{
     background-color: #1f1d1d;
     display: flex;
     flex-direction: column;
-    max-width: 40%;
+    max-width: 60%;
     max-height: 80%;
     justify-content: flex-end;
     box-shadow: 4px 4px 4px 5px #000;
@@ -91,6 +103,12 @@ body .pontuacaoEJogo{
 button {
     font-family: monospace;
     font-weight: bold;
+    border-radius: 20px;
+}
+
+.botaoVoltar button {
+    display: flex;
+    font-size: 20px;
 }
 
 
