@@ -18,14 +18,17 @@
 
 span{
     color: aliceblue;
+    /* display: flex; */
+    
 }
 
 img{
     display: flex;
-    max-width: 15%;
-    max-height: 15%;
+    max-width: 150px;
+    max-height: 100px;
     flex-direction: row;
-    justify-content: flex-end;
+    justify-content: center;
+    /* margin-top: 20%; */
 }
 
 .icons-quiz{
@@ -36,7 +39,6 @@ img{
     font-size: 22px;
     font-weight: bold;
     padding: 4px;
-    display: flex;
     margin-top: 7%;
     
 }

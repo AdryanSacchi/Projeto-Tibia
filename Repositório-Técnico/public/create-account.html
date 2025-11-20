@@ -24,28 +24,42 @@
                             placeholder="tibia@gmail.com">
                         <span id="span_validar_email"></span>
                     </span>
+                    <span id="span_validar_email"></span>
+                    </span>
                     <div class="text-senha">
-                        <label for="input_senha">Senha</label>
-                        <input class="input-senha" onfocus="mostrarRequisitos()" oninput="validarSenha()"
-                            onblur="esconderRequisitos()" id="input_senha" type="password" placeholder="********">
-                        <br>
-                        <span id="inicio_requisitos"></span>
-                        <span id="span_validar_letras"></span>
-                        <span id="span_validar_numeros"></span>
-                        <span id="span_validar_simbolos"></span>
-                        <span id="span_validar_tamanho"></span>
-                    </div>
-                    <span class="text-senha" for="confirmar_senha_input">Confirmar Senha:
-                        <input class="input-confirmar" onblur="validarConfirmacao()" id="input_confirmar"
-                            type="password" placeholder="********">
-                        <span id="span_validar_cfmSenha"></span>
-                        <li></li>
-                        <div class="botaoLogin">
-                            <button onclick="cadastrar()" type="button">Cadastrar</button>
+                        <div class="text-senha">
+                            <label for="input_senha">Senha</label>
+                            <input class="input-senha" onfocus="mostrarRequisitos()" oninput="validarSenha()"
+                                onblur="esconderRequisitos()" id="input_senha" type="password" placeholder="********">
+                            <br>
+                            <span id="inicio_requisitos"></span>
+                            <span id="span_validar_letras"></span>
+                            <span id="span_validar_numeros"></span>
+                            <span id="span_validar_simbolos"></span>
+                            <span id="span_validar_tamanho"></span>
                         </div>
-                        <span id="span_verificar_campos"></span>
-            </div>
-            </section>
+                        <span class="text-senha" for="confirmar_senha_input">Confirmar Senha:
+                            <input class="input-confirmar" onblur="validarConfirmacao()" id="input_confirmar"
+                                type="password" placeholder="********">
+                            <span id="span_validar_cfmSenha"></span>
+                            <label class="text-servidor" for="select_servidor">Servidor:
+                                <select class="input-servidor" id="select_servidor" onchange="validarServidor()">
+                                    <option value="">Selecione uma opção</option>
+                                    <option value="Antica">Antica (EU)</option>
+                                    <option value="Belobra">Belobra (SA)</option>
+                                    <option value="Wintera">Wintera (NA)</option>
+                                </select>
+                                <span id="span_validar_servidor"></span>
+                            </label>
+                            <li></li>
+
+                            <div class="botaoLogin">
+                                <button onclick="cadastrar()" type="button">Cadastrar</button>
+                            </div>
+                            <span id="span_verificar_campos"></span>
+
+                    </div>
+                </section>
 
             </div>
         </main>
@@ -57,6 +71,7 @@
 </html>
 
 <script>
+    var servidorInvalido = true;
     var letrasPermitidas = "abcdefghijklmnopqrstuvwxyzçáéíóúãõABCDEFGHIJKLMNOPQRSTUVWXYZÇÁÉÍÓÚÃÕ ";
     var numerosPermitidos = "0123456789";
 
@@ -69,7 +84,6 @@
     var senha = "";
 
 
-    //  Valida e-mail
     function validarEmail() {
         var email = email_input.value.trim();
         emailInvalido = true;
@@ -92,7 +106,6 @@
         }
     }
 
-    // Valida nome
     function validarNome() {
         var nome = nome_input.value.trim();
         var apenasLetras = 0;
@@ -124,7 +137,6 @@
     }
 
 
-    //  Mostra requisitos senha
     function mostrarRequisitos() {
         inicio_requisitos.innerHTML = "A senha deve conter:<br>";
         span_validar_letras.innerHTML = "Letras maiúsculas e minúsculas<br>";
@@ -133,7 +145,6 @@
         span_validar_tamanho.innerHTML = "De 8 a 20 caracteres";
     }
 
-    //  Oculta requisitos
     function esconderRequisitos() {
         inicio_requisitos.innerHTML = "";
         span_validar_letras.innerHTML = "";
@@ -142,7 +153,7 @@
         span_validar_tamanho.innerHTML = "";
     }
 
-    //  Valida senha
+
     function validarSenha() {
         senha = input_senha.value.trim();
         senhaInvalida = true;
@@ -196,7 +207,21 @@
         confirmar_senha_input.disabled = senhaInvalida;
     }
 
-    //  Valida confirmação senha
+    function validarServidor() {
+        var servidor = select_servidor.value;
+
+
+        if (servidor == "") {
+            servidorInvalido = true;
+            span_validar_servidor.innerHTML = "Selecione um servidor válido.";
+            span_validar_servidor.style.color = "red";
+        } else {
+            servidorInvalido = false;
+            span_validar_servidor.innerHTML = "";
+        }
+    }
+
+
     function validarConfirmacao() {
         var cfm = input_confirmar.value.trim();
         if (cfm == senha) {
@@ -208,13 +233,14 @@
         }
     }
 
-    //  Cadastro final
+
     function cadastrar() {
         if (
             !nomeInvalido &&
             !emailInvalido &&
             !senhaInvalida &&
-            !cfmSenhaInvalido
+            !cfmSenhaInvalido &&
+            !servidorInvalido
         ) {
             span_verificar_campos.innerHTML = "✅ Cadastro realizado com sucesso!";
             setTimeout(() => {

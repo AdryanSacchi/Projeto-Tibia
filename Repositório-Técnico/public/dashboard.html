@@ -29,7 +29,7 @@
             <div class="card-kpi"><canvas id="graficoRosquinha"></canvas></div>
             <div class="card-kpi">PRECISÃO</div>
             <div class="selecao-personagem">
-                <img src="assets/icon/mage-dash.png" alt="Imagem do PERSONAGEM">
+                <img src="assets/icon/mage-dash.png" alt="Imagem do PERSONAGEM" id="personagem">
                 <canvas id="meuGraficoRadar"></canvas>
             </div>
         </div>
@@ -37,15 +37,28 @@
 </body>
 
 </html>
-<!-- <div class="status-personagem">
-    ⚔️ 🟥<br>
-    🟣 🟥🟥🟥🟥🟥🟥<br>
-    🛡️ 🟥🟥<br>
-    👟 🟥🟥🟥<br>
-    🏹 🟥🟥🟥🟥<br><br><br>
 
-    Elemento: 🔥/⚡<br><br></div> -->
 <script>
+    function archer() {
+        personagem.src = "assets/icon/archer-dash.png";
+    }
+
+    function mage() {
+        personagem.src = "assets/icon/mage-dash.png";
+    }
+
+    function monk() {
+        personagem.src = "assets/icon/monk2-dash.png";
+    }
+
+    function druid() {
+        personagem.src = "assets/icon/druid-dash.png";
+    }
+
+    function knight() {
+        personagem.src = "assets/icon/knight-dash.png";
+    }
+
     const ctx = document.getElementById('meuGraficoRadar').getContext('2d');
 
     const meuGrafico = new Chart(ctx, {

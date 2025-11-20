@@ -10,13 +10,36 @@
 
 <body onload="iniciar()">
     <div class="pontuacaoJust" id="pontuacaoEJogo">
-        <button id="btnIniciarQuiz" onclick="iniciarJogo()">Começar a Jornada</button>
+
+        <div id="menuInicial" class="flex-colunar" style="gap: 10px; align-items: center;">
+            <label for="inputNick" style="color: white; font-weight: bold;">Digite seu Nick:</label>
+            <input type="text" id="inputNick" placeholder="Ex: O Mago Claudio"
+                style="padding: 8px; border-radius: 5px; border: none;">
+
+            <button id="btnIniciarQuiz" onclick="iniciarJogo()">Começar a Jornada</button>
+        </div>
 
         <div id="pontuacao" class="flex-colunar" style="display: none;">
             <div id="pontuacaoDuranteJogo" class="icons-quiz">
+                <div id="painelAtributos" class="padding-8" style="color: white; font-size: 14px; margin-top: 10px;">
+
+                    <div style="margin-bottom: 5px; border-bottom: 1px solid gray; padding-bottom: 5px;">
+                        Heroi: <span id="spanNomeJogador" class="text-bold" style="color: gold;">---</span>
+                    </div>
+
+                    <div>Classe: <span id="spanClasse" class="text-bold">Nenhuma</span></div>
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 5px;">
+                        <span>💪 For: <span id="attrForca">0</span></span>
+                        <span>🦵 Agi: <span id="attrAgilidade">0</span></span>
+                        <span>🧠 Int: <span id="attrInteligencia">0</span></span>
+                        <span>🍀 Sor: <span id="attrSorte">0</span></span>
+                        <span>🛡️ Res: <span id="attrResistencia">0</span></span>
+                    </div>
+                    <div id="msgLevelUp" style="color: yellow; font-weight: bold; height: 20px;"></div>
+                </div>
                 <img src="assets/icon/coraçãov1.png" alt="Icon Coração" class="coracao"><span
                     id="spanVidaAtual">100</span>
-                <img src="assets/icon/andar-vermelho.png" alt="Icon Andar" class="andar"><span>Piso <span
+                <img src="assets/icon/andar-vermelho.png" alt="Icon Andar" class="andar"><span>Piso<span
                         id="spanPisoAtual">1</span></span>
             </div>
         </div>
@@ -68,6 +91,15 @@
 </html>
 <script>
     const QUESTOES = [
+        {
+            pergunta: "Como um primeiro passo, você deve escolher sua classe:",
+            alternativaA: "Quero ser um Paladino!",
+            alternativaB: "Quero ser um Guerreiro!",
+            alternativaC: "Quero ser um Mago!",
+            alternativaD: "Quero ser um Monge!",
+            alternativaCorreta: "todas"
+        },
+
         {
             pergunta: "Você acabou de entrar em uma Masmorra, logo a sua frente você encntra algumas opções para prosseguir:",
             alternativaA: "ir pelo caminho Fácil (hehe)",
@@ -134,10 +166,22 @@
         },
     ];
 
+    let jogador = {
+        nome: "",
+        classe: "Nenhuma",
+        atributos: {
+            forca: 0,
+            agilidade: 0,
+            inteligencia: 0,
+            sorte: 0,
+            resistencia: 0
+        }
+    };
+
     let questaoAtual = 0;
     let vida = 100;
     let piso = 1;
-    const DANO = 25;
+    const DANO = (Math.random() * 15 + 15).toFixed();
 
     function iniciar() {
         document.getElementById('pontuacao').style.display = "none";
@@ -145,10 +189,18 @@
     }
 
     function iniciarJogo() {
+        var nickDigitado = document.getElementById('inputNick').value;
+
+        if (nickDigitado == "") {
+            alert("Por favor, digite um Nick para começar a jornada!");
+            return;
+        }
+
+        jogador.nome = nickDigitado;
+        atualizarPainelAtributos();
+        document.getElementById('menuInicial').style.display = "none";
         document.getElementById('pontuacao').style.display = "flex";
         document.getElementById('jogo').style.display = "flex";
-        document.getElementById('btnIniciarQuiz').style.display = "none";
-
         document.getElementById('qtdQuestoes').innerHTML = QUESTOES.length;
         document.getElementById('spanVidaAtual').innerHTML = vida;
         document.getElementById('spanPisoAtual').innerHTML = piso;
@@ -175,31 +227,29 @@
         const opcoes = document.getElementsByName("option");
         let selecionado = null;
 
-        // Loop simples para achar a opção marcada
-        for (let i = 0; i < opcoes.length; i++) {
+        for (let i = 0; i < opcoes.length && selecionado === null; i++) {
             if (opcoes[i].checked) {
                 selecionado = opcoes[i];
-                break;
             }
         }
 
         if (selecionado === null) {
             alert("Escolha uma opção antes de continuar!");
-            return;
+        } else {
+            document.getElementById('btnSubmeter').disabled = true;
+            document.getElementById('btnProx').disabled = false;
+            habilitarOpcoes(false);
+
+            verificarResposta(selecionado.value);
         }
 
-        document.getElementById('btnSubmeter').disabled = true;
-        document.getElementById('btnProx').disabled = false;
-        habilitarOpcoes(false);
-
-        verificarResposta(selecionado.value);
     }
 
-    function habilitarOpcoes(valor) {
-        document.getElementById('primeiraOpcao').disabled = !valor;
-        document.getElementById('segundaOpcao').disabled = !valor;
-        document.getElementById('terceiraOpcao').disabled = !valor;
-        document.getElementById('quartaOpcao').disabled = !valor;
+    function habilitarOpcoes(resposta) {
+        document.getElementById('primeiraOpcao').disabled = !resposta;
+        document.getElementById('segundaOpcao').disabled = !resposta;
+        document.getElementById('terceiraOpcao').disabled = !resposta;
+        document.getElementById('quartaOpcao').disabled = !resposta;
     }
 
     function proximoPiso() {
@@ -224,21 +274,27 @@
         window.location.reload();
     }
 
-    function verificarResposta(valor) {
+    function verificarResposta(resposta) {
         const q = QUESTOES[questaoAtual];
         const correta = q.alternativaCorreta;
+        const inputSelecionado = document.querySelector('input[value="' + resposta + '"]');
+        const labelSelecionado = inputSelecionado.labels[0];
 
-        const inputCorreto = document.querySelector('input[value="' + correta + '"]');
-        const labelCorreto = inputCorreto.labels[0];
-
-        if (valor === correta) {
-            labelCorreto.classList.add("text-success-with-bg");
+        if (questaoAtual === 0) {
+            let textoClasse = labelSelecionado.innerText;
+            jogador.classe = textoClasse.replace("Quero ser um ", "").replace("!", "");
+            atualizarPainelAtributos();
+        }
+        if (correta === "todas" || resposta === correta) {
+            labelSelecionado.classList.add("text-success-with-bg");
+            darRecompensaDeAtributo();
         } else {
-            const inputErrado = document.querySelector('input[value="' + valor + '"]');
-            const labelErrado = inputErrado.labels[0];
-
-            labelErrado.classList.add("text-danger-with-bg");
-            labelCorreto.classList.add("text-success-with-bg");
+            labelSelecionado.classList.add("text-danger-with-bg");
+            const inputCorreto = document.querySelector('input[value="' + correta + '"]');
+            if (inputCorreto) {
+                inputCorreto.labels[0].classList.add("text-success-with-bg");
+            }
+            darRecompensaDeAtributo();
 
             vida = vida - DANO;
             if (vida < 0) {
@@ -254,9 +310,9 @@
 
     function finalizar(morreu) {
         if (morreu) {
-            alert("GAME OVER! Você morreu no Piso " + piso);
+            alert("GAME OVER! O herói " + jogador.nome + " caiu no Piso " + piso);
         } else {
-            alert("Parabéns! Você completou todos os pisos!(talvez não inteiro)");
+            alert("Parabéns! " + jogador.nome + " completou todos os pisos!(talvez não inteiro)");
         }
 
         habilitarOpcoes(false);
@@ -284,4 +340,26 @@
             opcoes[i].checked = false;
         }
     }
+    function darRecompensaDeAtributo() {
+        const listaAtributos = ['forca', 'agilidade', 'inteligencia', 'sorte', 'resistencia'];
+        const indiceSorteado = Math.floor(Math.random() * listaAtributos.length);
+        const atributoEscolhido = listaAtributos[indiceSorteado];
+        const pontosGanhos = Math.floor(Math.random() * 3) + 1;
+        jogador.atributos[atributoEscolhido] += pontosGanhos;
+        atualizarPainelAtributos();
+        setTimeout(() => {
+            document.getElementById('msgLevelUp').innerHTML = "";
+        }, 2000);
+    }
+
+    function atualizarPainelAtributos() {
+        document.getElementById('spanNomeJogador').innerHTML = jogador.nome;
+        document.getElementById('spanClasse').innerHTML = jogador.classe;
+        document.getElementById('attrForca').innerHTML = jogador.atributos.forca;
+        document.getElementById('attrAgilidade').innerHTML = jogador.atributos.agilidade;
+        document.getElementById('attrInteligencia').innerHTML = jogador.atributos.inteligencia;
+        document.getElementById('attrSorte').innerHTML = jogador.atributos.sorte;
+        document.getElementById('attrResistencia').innerHTML = jogador.atributos.resistencia;
+    }
+
 </script>
