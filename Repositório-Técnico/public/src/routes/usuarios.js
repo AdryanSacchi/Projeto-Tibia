@@ -12,4 +12,9 @@ router.post("/autenticar", function (req, res) {
     usuarioController.autenticar(req, res);
 });
 
+router.post("/salvar-tentativa", function (req, res) {
+    usuarioController.salvarTentativa(req, res); 
+});
+router.get("/dados/:idUsuario", usuarioController.buscarDadosDashboard);
+
 module.exports = router;

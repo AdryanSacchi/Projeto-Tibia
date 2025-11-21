@@ -19,7 +19,12 @@ function autenticar(req, res) {
 
                     if (resultadoAutenticar.length == 1) {
                         console.log(resultadoAutenticar);
-                        res.status(200).send(resultadoAutenticar[0])
+                        res.status(200).json({
+    id_usuario: resultadoAutenticar[0].id_usuario, 
+    email: resultadoAutenticar[0].email,
+    nome: resultadoAutenticar[0].nome
+    
+});
                     //     aquarioModel.buscarAquariosPorEmpresa(resultadoAutenticar[0].empresaId)
                     //         .then((resultadoAquarios) => {
                     //             if (resultadoAquarios.length > 0) {
@@ -88,8 +93,76 @@ function cadastrar(req, res) {
             );
     }
 }
+function salvarTentativa(req, res) {
+    var nome = req.body.nomeServer;
+    var classe = req.body.classeServer;
+    var vida = req.body.vidaFinalServer;
+    var piso = req.body.pisoFinalServer;
+    var forca = req.body.forcaFinalServer;
+    var agilidade = req.body.agilidadeFinalServer;
+    var inteligencia = req.body.inteligenciaFinalServer;
+    var sorte = req.body.sorteFinalServer;
+    var resistencia = req.body.resistenciaFinalServer;
+    var fkUsuario = req.body.fkUsuarioServer;
+    
+
+    if (nome == undefined) {
+        res.status(400).send("O nome do jogador está undefined!");
+    
+    } else if (fkUsuario == undefined) { 
+        res.status(400).send("O ID do usuário para vincular está undefined!");
+    } else if (classe == undefined) {
+        res.status(400).send("A classe do jogador está undefined!");
+    } else {
+        usuarioModel.salvarTentativa(
+            nome, 
+            classe, 
+            vida, 
+            piso, 
+            forca, 
+            agilidade, 
+            inteligencia, 
+            sorte, 
+            resistencia,
+            fkUsuario
+        )
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log("\nHouve um erro ao salvar a tentativa de jogo! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+    }
+}
+function buscarDadosDashboard(req, res) {
+    const idUsuario = req.params.idUsuario;
+
+    if (idUsuario == undefined) {
+        res.status(400).send("ID do usuário não enviado!");
+        return;
+    }
+
+    usuarioModel.buscarUltimoResultado(idUsuario)
+        .then(function (resultado) {
+            if (resultado.length > 0) {
+                res.json(resultado[0]);
+            } else {
+                res.send("Nenhum resultado encontrado.");
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+            res.status(500).json(erro.sqlMessage);
+        });
+}
 
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    salvarTentativa,
+    buscarDadosDashboard
 }
