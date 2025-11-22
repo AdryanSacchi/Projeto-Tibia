@@ -93,7 +93,7 @@
 <script>
     const QUESTOES = [
         {
-            pergunta: "Como um primeiro passo, você deve escolher sua classe:",
+            pergunta: "Como um primeiro passo, você deve indicar a Classe que pretente seguir por agora:",
             alternativaA: "Quero ser um Paladino!",
             alternativaB: "Quero ser um Guerreiro!",
             alternativaC: "Quero ser um Mago!",
@@ -103,7 +103,7 @@
 
         {
             pergunta: "Você acabou de entrar em uma Masmorra, logo a sua frente você encntra algumas opções para prosseguir:",
-            alternativaA: "ir pelo caminho Fácil (hehe)",
+            alternativaA: "ir pelo Caminho Fácil (hehe)",
             alternativaB: "ir pelo Caminho totalmente escuro",
             alternativaC: "ir pela ponte quebrada",
             alternativaD: "aguardar (?)",
@@ -126,7 +126,7 @@
             alternativaCorreta: "alternativaD"
         },
         {
-            pergunta: "Curioso.. você está indo bem demais, é sua primeira vez aqui?",
+            pergunta: "Curioso.. você está indo bem demais, é sua primeira vez por aqui?",
             alternativaA: "Sim",
             alternativaB: "Não",
             alternativaC: "QUEM TA PERGUNTANDO ISSO?!!??",
@@ -134,7 +134,7 @@
             alternativaCorreta: "alternativaD"
         },
         {
-            pergunta: "Nessa próxima etapa você deu de cara com 3 monstros, um esquilo com olhos vermelhos, zumbi com um taco na mão e um sapo grande com uma espada nas costas, o que deseja fazer?",
+            pergunta: "Nessa próxima etapa você deu de cara com 3 monstros, um esquilo com olhos vermelhos, um zumbi com um taco na mão e um sapo grande com uma espada nas costas, o que deseja fazer?",
             alternativaA: "Quero correr, chega disso!",
             alternativaB: "Vou em direção ao Sapo",
             alternativaC: "Tento enfrentar o esquilo",
@@ -208,22 +208,6 @@
 
         carregarQuestao(0);
     }
-
-    function carregarQuestao(i) {
-        questaoAtual = i;
-        const q = QUESTOES[i];
-
-        habilitarOpcoes(true);
-
-        document.getElementById('spanNumeroDaQuestaoAtual').innerHTML = piso;
-        document.getElementById('spanQuestaoExibida').innerHTML = q.pergunta;
-
-        document.getElementById('labelOpcaoUm').innerHTML = q.alternativaA;
-        document.getElementById('labelOpcaoDois').innerHTML = q.alternativaB;
-        document.getElementById('labelOpcaoTres').innerHTML = q.alternativaC;
-        document.getElementById('labelOpcaoQuatro').innerHTML = q.alternativaD;
-    }
-
     function submeter() {
         const opcoes = document.getElementsByName("option");
         let selecionado = null;
@@ -245,6 +229,22 @@
         }
 
     }
+
+    function carregarQuestao(i) {
+        questaoAtual = i;
+        const q = QUESTOES[i];
+
+        habilitarOpcoes(true);
+
+        document.getElementById('spanNumeroDaQuestaoAtual').innerHTML = piso;
+        document.getElementById('spanQuestaoExibida').innerHTML = q.pergunta;
+
+        document.getElementById('labelOpcaoUm').innerHTML = q.alternativaA;
+        document.getElementById('labelOpcaoDois').innerHTML = q.alternativaB;
+        document.getElementById('labelOpcaoTres').innerHTML = q.alternativaC;
+        document.getElementById('labelOpcaoQuatro').innerHTML = q.alternativaD;
+    }
+
 
     function habilitarOpcoes(resposta) {
         document.getElementById('primeiraOpcao').disabled = !resposta;
@@ -309,7 +309,7 @@
 
     function finalizar(morreu) {
         if (morreu) {
-            alert("GAME OVER! O herói " + jogador.nome + " caiu no Piso " + piso);
+            alert("GAME OVER! O aventureiro " + jogador.nome + " teve seu fim no piso " + piso);
 
         } else {
             alert("Parabéns! " + jogador.nome + " completou todos os pisos!(talvez não inteiro)");

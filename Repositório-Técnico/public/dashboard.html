@@ -24,14 +24,30 @@
             <img style="background-color: rgb(64, 88, 87);" src="assets/icon/image.png" alt="Icone Player"
                 class="header-playerinfo">
             <p style="margin-right: 30%; display:flex; justify-content: center; font-size: 50px;">PLAYER NAME</p>
+            <div class="botoesPlayer">
+                <a id="botaoVoltar" href="quizz.html">Voltar</a><br>
+                <a id="botaoSair" href="index.html">Sair</a><br>
+            </div>
+
         </div>
+
         <div class="dashboard">
             <div class="card-kpi">PISO MÁXIMO: <span id="spanPisoMaximo">--</span></div>
             <div class=" card-kpi">VIDA FINAL: <span id="spanVidaFinal">--</span></div>
-            <div class="card-kpi">ACERTOS</div>
+            <div class="card-kpi" id="descricaoClasse">Selecione uma classe</div>
             <div class="selecao-personagem">
                 <img src="assets/icon/mage-dash.png" alt="Imagem do PERSONAGEM" id="personagem">
+
                 <canvas id="meuGraficoRadar"></canvas>
+
+                <div class="painel-lateral">
+                    <h3 class="titulo-habilidades">Habilidades</h3>
+                    <div class="habilidades">
+                        <img id="hab1" src="assets/icon/Spell-Kina1.gif" alt="Habilidade 1">
+                        <img id="hab2" src="assets/icon/Spell-Kina2.gif" alt="Habilidade 2">
+                        <img id="hab3" src="assets/icon/Spell-Kina3.gif" alt="Habilidade 3">
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -40,9 +56,7 @@
 </html>
 
 <script>
-    window.onload = function () {
-        carregarDadosDashboard();
-    };
+
 
     function carregarDadosDashboard() {
         const idUsuario = sessionStorage.ID_USUARIO;
@@ -74,51 +88,10 @@
             console.error("Erro de rede:", erro);
         });
     }
-    function montarRadar(dados) {
-        const ctx = document.getElementById('meuGraficoRadar').getContext('2d');
 
-        const meuGrafico = new Chart(ctx, {
-            type: 'radar', //
-            data: {
-                labels: [
-                    'Força',
-                    'Agilidade',
-                    'Inteligência',
-                    'Sorte',
-                    'Resistência'
-                ],
-                datasets: [{
-                    label: 'Status do Personagem',
-                    data: [, 45, 100, 45, 20],
-                    fill: true,
-                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                    borderColor: 'rgb(54, 162, 235)',
-                    pointBackgroundColor: 'rgb(54, 162, 235)',
-                    pointBorderColor: '#fff',
-                    pointHoverBackgroundColor: '#fff',
-                    pointHoverBorderColor: 'rgb(54, 162, 235)'
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: true,
-                elements: {
-                    line: {
-                        borderWidth: 1
-                    }
-                },
-                scales: {
-                    r: {
-                        angleLines: {
-                            display: false
-                        },
-                        ticks: {
-                            display: false
-                        }
-                    }
-                }
-            }
-        });
+
+    function atualizarDescricaoClasse(texto) {
+        document.getElementById("descricaoClasse").innerText = texto;
     }
 
     function atualizarGraficoRadar(dados) {
@@ -130,9 +103,42 @@
             dados.resistencia || 0
         ];
 
+        const habilidade1 = document.getElementById("hab1");
+        const habilidade2 = document.getElementById("hab2");
+        const habilidade3 = document.getElementById("hab3");
+
         meuGrafico.data.datasets[0].data = novosDados;
         meuGrafico.update();
+
+        if (dados.forca > dados.inteligencia && dados.resistencia > 3) {
+            personagem.src = "assets/icon/knight-dash.png";
+            habilidade1.src = "assets/icon/Spell-Kina1.gif";
+            habilidade2.src = "assets/icon/Spell-Kina2.gif";
+            habilidade3.src = "assets/icon/Spell-Kina3.gif";
+
+            atualizarDescricaoClasse("Como sua força é maior que seus outros atributos, seria uma boa ideia ir pelo caminho do Guerreiro!")
+        } else if (dados.inteligencia >= dados.forca && dados.resistencia >= 5 && dados.agilidade < dados.forca) {
+            personagem.src = "assets/icon/monk2-dash.png";
+            habilidade1.src = "assets/icon/Spell-Monk1.gif";
+            habilidade2.src = "assets/icon/Spell-Monk2.gif";
+            habilidade3.src = "assets/icon/Spell-Monk3.gif";
+            atualizarDescricaoClasse("Como seus atributos estão distribuidos e sua agilidade não é tao boa, seria uma boa ideia ir pelo caminho do Monge!")
+        } else if (dados.agilidade > dados.forca && dados.agilidade > dados.inteligencia) {
+            personagem.src = "assets/icon/archer-dash.png";
+            habilidade1.src = "assets/icon/Spell-Pala1.gif";
+            habilidade2.src = "assets/icon/Spell-Pala2.gif";
+            habilidade3.src = "assets/icon/Spell-Pala3.gif";
+            atualizarDescricaoClasse("Como sua agilidade se destaca, seria uma boa escolha ir pelo caminho do Paladino!")
+        } else {
+            personagem.src = "assets/icon/druid-dash.png";
+            habilidade1.src = "assets/icon/Spell-Druid1.gif";
+            habilidade2.src = "assets/icon/Spell-Druid2.gif";
+            habilidade3.src = "assets/icon/Spell-Druid3.gif";
+            atualizarDescricaoClasse("Como seus atributos em destaque não são nem força e nem agilidade, é uma opção seguir o caminho do Druida!")
+        }
     }
+
+
 
 
     window.onload = function () {
