@@ -62,19 +62,19 @@
 
             <div id="opcoes" class="flex-colunar padding-8">
                 <span>
-                    <input type="radio" id="primeiraOpcao" name="option" class="radio" value="alternativaA" />
+                    <input id="primeiraOpcao" type="radio" name="option" value="Paladino">
                     <label for="primeiraOpcao" class="option" id="labelOpcaoUm"></label>
                 </span>
                 <span>
-                    <input type="radio" id="segundaOpcao" name="option" class="radio" value="alternativaB" />
+                    <input id="segundaOpcao" type="radio" name="option" value="Guerreiro">
                     <label for="segundaOpcao" class="option" id="labelOpcaoDois"></label>
                 </span>
                 <span>
-                    <input type="radio" id="terceiraOpcao" name="option" class="radio" value="alternativaC" />
+                    <input id="terceiraOpcao" type="radio" name="option" value="Mago">
                     <label for="terceiraOpcao" class="option" id="labelOpcaoTres"></label>
                 </span>
                 <span>
-                    <input type="radio" id="quartaOpcao" name="option" class="radio" value="alternativaD" />
+                    <input id="quartaOpcao" type="radio" name="option" value="Monge">
                     <label for="quartaOpcao" class="option" id="labelOpcaoQuatro"></label>
                 </span>
             </div>
@@ -225,7 +225,7 @@
             document.getElementById('btnProx').disabled = false;
             habilitarOpcoes(false);
 
-            verificarResposta(selecionado.value);
+            verificarResposta(selecionado);
         }
 
     }
@@ -273,38 +273,37 @@
 
 
 
-    function verificarResposta(resposta) {
+    function verificarResposta(inputSelecionado) {
+        const resposta = inputSelecionado.value;
         const q = QUESTOES[questaoAtual];
         const correta = q.alternativaCorreta;
-        const inputSelecionado = document.querySelector('input[value="' + resposta + '"]');
         const labelSelecionado = inputSelecionado.labels[0];
 
         if (questaoAtual === 0) {
-            let textoClasse = labelSelecionado.innerText;
-            jogador.classe = textoClasse.replace("Quero ser um ", "").replace("!", "");
+            jogador.classe = inputSelecionado.value;
             atualizarPainelAtributos();
         }
+
         if (correta === "todas" || resposta === correta) {
             labelSelecionado.classList.add("text-success-with-bg");
             darRecompensaDeAtributo();
         } else {
             labelSelecionado.classList.add("text-danger-with-bg");
-            const inputCorreto = document.querySelector('input[value="' + correta + '"]');
-            if (inputCorreto) {
-                inputCorreto.labels[0].classList.add("text-success-with-bg");
+            const alternativas = document.getElementsByName(inputSelecionado.name);
+            for (let alt of alternativas) {
+                if (alt.value === correta) {
+                    alt.labels[0].classList.add("text-success-with-bg");
+                }
             }
+
             darRecompensaDeAtributo();
 
             vida = vida - DANO;
-            if (vida < 0) {
-                vida = 0;
-            }
+            if (vida < 0) vida = 0;
             document.getElementById('spanVidaAtual').innerHTML = vida;
         }
 
-        if (vida <= 0) {
-            finalizar(true);
-        }
+        if (vida <= 0) finalizar(true);
     }
 
     function finalizar(morreu) {

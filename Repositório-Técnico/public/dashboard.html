@@ -110,31 +110,33 @@
         meuGrafico.data.datasets[0].data = novosDados;
         meuGrafico.update();
 
-        if (dados.forca > dados.inteligencia && dados.resistencia > 3) {
+        if (dados.forca >= 7 || dados.resistencia >= 6) {
             personagem.src = "assets/icon/knight-dash.png";
             habilidade1.src = "assets/icon/Spell-Kina1.gif";
             habilidade2.src = "assets/icon/Spell-Kina2.gif";
             habilidade3.src = "assets/icon/Spell-Kina3.gif";
 
-            atualizarDescricaoClasse("Como sua força é maior que seus outros atributos, seria uma boa ideia ir pelo caminho do Guerreiro!")
-        } else if (dados.inteligencia >= dados.forca && dados.resistencia >= 5 && dados.agilidade < dados.forca) {
+            atualizarDescricaoClasse("Como sua FORÇA ou sua RESISTENCIA é maior que seus outros atributos, seria uma boa ideia ir pelo caminho do Guerreiro!")
+        } else if (dados.inteligencia >= 6 && dados.resistencia >= 5) {
             personagem.src = "assets/icon/monk2-dash.png";
             habilidade1.src = "assets/icon/Spell-Monk1.gif";
             habilidade2.src = "assets/icon/Spell-Monk2.gif";
             habilidade3.src = "assets/icon/Spell-Monk3.gif";
-            atualizarDescricaoClasse("Como seus atributos estão distribuidos e sua agilidade não é tao boa, seria uma boa ideia ir pelo caminho do Monge!")
-        } else if (dados.agilidade > dados.forca && dados.agilidade > dados.inteligencia) {
+            atualizarDescricaoClasse("Como seus atributos estão distribuidos e sua AGILIDADE não é tao boa, seria uma boa ideia ir pelo caminho do Monge!")
+        } else if (dados.agilidade >= 6 || dados.sorte >= 6) {
             personagem.src = "assets/icon/archer-dash.png";
             habilidade1.src = "assets/icon/Spell-Pala1.gif";
             habilidade2.src = "assets/icon/Spell-Pala2.gif";
             habilidade3.src = "assets/icon/Spell-Pala3.gif";
-            atualizarDescricaoClasse("Como sua agilidade se destaca, seria uma boa escolha ir pelo caminho do Paladino!")
-        } else {
+            atualizarDescricaoClasse("Como sua AGILIDADE ou sua SORTE se destacam, seria uma boa escolha ir pelo caminho do Paladino!")
+        } else if (dados.inteligencia > dados.forca && dados.inteligencia > dados.agilidade) {
             personagem.src = "assets/icon/druid-dash.png";
             habilidade1.src = "assets/icon/Spell-Druid1.gif";
             habilidade2.src = "assets/icon/Spell-Druid2.gif";
             habilidade3.src = "assets/icon/Spell-Druid3.gif";
-            atualizarDescricaoClasse("Como seus atributos em destaque não são nem força e nem agilidade, é uma opção seguir o caminho do Druida!")
+            atualizarDescricaoClasse("Como seus atributos em destaque não são nem FORÇA e nem AGILIDADEE, é uma opção seguir o caminho do Druida!")
+        } else {
+
         }
     }
 
