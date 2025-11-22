@@ -76,14 +76,16 @@ body {
 }
 
 .char-icon {
-    width: 45px; 
-    height: 45px;
-    margin-right: 5px;
+        width: 45px; 
+        height: 45px;
+        margin-right: 5px;
+        cursor: pointer;
 }
 
 .titulo-header{
-    height: 40px;
-    width: auto;
+        height: 40px;
+        width: auto;
+        cursor: pointer;
 }
 
 .tibia-title {
@@ -95,11 +97,12 @@ body {
 }
 
 .box-maps {
-    margin-top: 35px;
-    margin-right: 35px;
-    color: #ffffff;
-    font-size: 16px;
-    font-weight: bold;
+        margin-top: 35px;
+        margin-right: 60px;
+        color: #ffffff;
+        font-size: 16px;
+        font-weight: bold;
+        
 }
 
 /* divisão das partes da pagina*/
@@ -249,9 +252,10 @@ body {
 }
 
 .minimap-image {
-    width: 100%;
-    display: block;
-}
+        width: 100%;
+        display: block;
+        cursor: pointer;
+    }
 
 /* container monstro */
 .monster-image-container {
@@ -263,7 +267,14 @@ body {
     width: 180px; 
     display: block;
     margin-right: 40px;
+    cursor: pointer;
 }
+
+ .onu-image {
+        width: 180px; 
+        display: block;
+        margin-right: 40px;
+    }
 
 /* estilização da lista */
 

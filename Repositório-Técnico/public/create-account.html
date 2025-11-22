@@ -54,6 +54,7 @@
                             <li></li>
 
                             <div class="botaoLogin">
+                                <button onclick="Sair()">Sair</button>
                                 <button onclick="cadastrar()" type="button">Cadastrar</button>
                             </div>
                             <span id="span_verificar_campos"></span>
@@ -287,6 +288,10 @@
             });
 
         return false;
+    }
+
+    function Sair() {
+        window.location = "index.html";
     }
 
 

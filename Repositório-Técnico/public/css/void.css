@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Wet+Paint&display=swap');
+
+.content-box a:link,
+.content-box a:visited,
+.content-box a:active {
+    color: #999; 
+    text-decoration: none; 
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+  
+    
+}
+
+
+
+main {
+    display: flex;
+    flex-direction: column;
+    width: 50vw;
+    height: 80%;
+    gap: 5%;
+}
+
+.map-container {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.map-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 105vh;
+
+    /* object-fit: cover;  */
+    z-index: -1;
+}
+
+.botao-esquerda {
+    bottom: 20px;
+    left: 20px;
+    padding: 12px 20px;
+    background-color: #ffcc00;
+    color: #000;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    position: fixed;
+    z-index: 999;
+}
+
+

@@ -162,7 +162,10 @@ main {
     padding-bottom: 20px;
     display: flex;
     justify-content: flex-end;
+    display: flex;
+    gap: 140px;
 }
+
 
 .botaoLogin button{
     color: #999;

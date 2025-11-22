@@ -82,7 +82,7 @@
             <div id="botoes" class="flex-colunar padding-8">
                 <button onclick="submeter()" id="btnSubmeter">Ja me decidi!</button>
                 <button onclick="proximoPiso()" id="btnProx" disabled>Avançar para o próximo andar</button>
-                <button onclick="RESULTADO()" id="btnRESULTADO" disabled>RESULTADO</button>
+                <button onclick="window.location.href='index.html'" id="botaoFugir" disabled>FUGIR</button>
             </div>
 
         </div>
@@ -191,6 +191,7 @@
 
     function iniciarJogo() {
         var nickDigitado = document.getElementById('inputNick').value;
+        document.getElementById('botaoFugir').disabled = false;
 
         if (nickDigitado == "") {
             alert("Por favor, digite um Nick para começar a jornada!");
@@ -317,7 +318,7 @@
         habilitarOpcoes(false);
         document.getElementById('btnSubmeter').disabled = true;
         document.getElementById('btnProx').disabled = true;
-        document.getElementById('btnRESULTADO').disabled = false;
+        document.getElementById('botaoFugir').disabled = true;
 
         document.getElementById('jogo').classList.add("text-new-gray");
 

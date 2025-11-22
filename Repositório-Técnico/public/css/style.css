@@ -35,6 +35,10 @@
         text-decoration: none;
     }
 
+    .iconLogo .iconTibia{
+        cursor: pointer;
+    }
+
     /* box geral da page*/
     body {
         background-image: url(../assets/imgs/background_page.png);
@@ -78,27 +82,30 @@
         width: 45px; 
         height: 45px;
         margin-right: 5px;
+        cursor: pointer;
     }
 
     .titulo-header{
         height: 40px;
         width: auto;
+        cursor: pointer;
     }
 
-    .tibia-title {
+.tibia-title {
         font-size: 40px;
         font-weight: bold;
         color: gold;
         text-shadow: 1px 1px 2px #000;
     }
 
-    .box-maps {
+.box-maps {
         margin-top: 35px;
-        margin-right: 35px;
+        margin-right: 60px;
         color: #ffffff;
         font-size: 16px;
         font-weight: bold;
-    }
+        
+}
 
     /* divisão das partes da pagina*/
     .main-grid {
@@ -247,6 +254,7 @@
     .minimap-image {
         width: 100%;
         display: block;
+        cursor: pointer;
     }
 
     /* container monstro */
@@ -256,6 +264,13 @@
     }
     /* especificações imagem do monstro */
     .monster-image {
+        width: 180px; 
+        display: block;
+        margin-right: 40px;
+        cursor: pointer;
+    }
+
+    .onu-image {
         width: 180px; 
         display: block;
         margin-right: 40px;

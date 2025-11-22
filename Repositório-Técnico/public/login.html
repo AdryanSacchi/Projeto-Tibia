@@ -20,11 +20,16 @@
                     <span class="text-senha">Senha:
                         <input class="input_senha" type="password" id="input_senha">
                         <div id="div_mensagem"></div>
+                        <div id="mensagem_erro"></div>
                     </span>
                     <li> <a href="create-account.html">Crie sua conta</a></li>
                     <div class="botaoLogin">
+                        <button onclick="Sair()">Sair</button>
                         <button onclick="Entrar()">Login</button>
+
                     </div>
+                    <div id="div_mensagem"></div>
+                    <div id="mensagem_erro"></div>
             </div>
             </section>
 
@@ -43,8 +48,8 @@
         var senhaVar = input_senha.value;
 
         if (emailVar == "" || senhaVar == "") {
-            cardErro.style.display = "block"
-            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+            document.getElementById("mensagem_erro").innerHTML =
+                "⚠️ Preencha todos os campos corretamente.";
             return false;
         }
 
@@ -94,6 +99,10 @@
         })
 
         return false;
+    }
+
+    function Sair() {
+        window.location = "index.html";
     }
 
 
