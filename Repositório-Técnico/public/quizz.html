@@ -62,26 +62,26 @@
 
             <div id="opcoes" class="flex-colunar padding-8">
                 <span>
-                    <input id="primeiraOpcao" type="radio" name="option" value="Paladino">
+                    <input id="primeiraOpcao" type="radio" name="option" value="alternativaA">
                     <label for="primeiraOpcao" class="option" id="labelOpcaoUm"></label>
                 </span>
                 <span>
-                    <input id="segundaOpcao" type="radio" name="option" value="Guerreiro">
+                    <input id="segundaOpcao" type="radio" name="option" value="alternativaB">
                     <label for="segundaOpcao" class="option" id="labelOpcaoDois"></label>
                 </span>
                 <span>
-                    <input id="terceiraOpcao" type="radio" name="option" value="Mago">
+                    <input id="terceiraOpcao" type="radio" name="option" value="alternativaC">
                     <label for="terceiraOpcao" class="option" id="labelOpcaoTres"></label>
                 </span>
                 <span>
-                    <input id="quartaOpcao" type="radio" name="option" value="Monge">
+                    <input id="quartaOpcao" type="radio" name="option" value="alternativaD">
                     <label for="quartaOpcao" class="option" id="labelOpcaoQuatro"></label>
                 </span>
             </div>
 
             <div id="botoes" class="flex-colunar padding-8">
-                <button onclick="submeter()" id="btnSubmeter">Ja me decidi!</button>
-                <button onclick="proximoPiso()" id="btnProx" disabled>Avançar para o próximo andar</button>
+                <button onclick="submeter()" id="botaoSubmeter">Ja me decidi!</button>
+                <button onclick="proximoPiso()" id="botaoProximo" disabled>Avançar para o próximo andar</button>
                 <button onclick="window.location.href='index.html'" id="botaoFugir" disabled>FUGIR</button>
             </div>
 
@@ -94,10 +94,10 @@
     const QUESTOES = [
         {
             pergunta: "Como um primeiro passo, você deve indicar a Classe que pretente seguir por agora:",
-            alternativaA: "Quero ser um Paladino!",
-            alternativaB: "Quero ser um Guerreiro!",
-            alternativaC: "Quero ser um Mago!",
-            alternativaD: "Quero ser um Monge!",
+            alternativaA: "Paladino",
+            alternativaB: "Guerreiro",
+            alternativaC: "Mago",
+            alternativaD: "Monge",
             alternativaCorreta: "todas"
         },
 
@@ -222,8 +222,8 @@
         if (selecionado === null) {
             alert("Escolha uma opção antes de continuar!");
         } else {
-            document.getElementById('btnSubmeter').disabled = true;
-            document.getElementById('btnProx').disabled = false;
+            document.getElementById('botaoSubmeter').disabled = true;
+            document.getElementById('botaoProximo').disabled = false;
             habilitarOpcoes(false);
 
             verificarResposta(selecionado);
@@ -255,8 +255,8 @@
     }
 
     function proximoPiso() {
-        document.getElementById('btnProx').disabled = true;
-        document.getElementById('btnSubmeter').disabled = false;
+        document.getElementById('botaoProximo').disabled = true;
+        document.getElementById('botaoSubmeter').disabled = false;
 
         limparSelecao();
         limparCores();
@@ -273,7 +273,6 @@
     }
 
 
-
     function verificarResposta(inputSelecionado) {
         const resposta = inputSelecionado.value;
         const q = QUESTOES[questaoAtual];
@@ -281,7 +280,7 @@
         const labelSelecionado = inputSelecionado.labels[0];
 
         if (questaoAtual === 0) {
-            jogador.classe = inputSelecionado.value;
+            jogador.classe = inputSelecionado.labels[0].innerText;
             atualizarPainelAtributos();
         }
 
@@ -316,8 +315,8 @@
         }
 
         habilitarOpcoes(false);
-        document.getElementById('btnSubmeter').disabled = true;
-        document.getElementById('btnProx').disabled = true;
+        document.getElementById('botaoSubmeter').disabled = true;
+        document.getElementById('botaoProximo').disabled = true;
         document.getElementById('botaoFugir').disabled = true;
 
         document.getElementById('jogo').classList.add("text-new-gray");

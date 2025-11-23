@@ -75,11 +75,9 @@
             if (response.ok) {
                 response.json().then(dados => {
                     console.log("Dados recebidos:", dados);
-                    document.getElementById('spanPisoMaximo').innerText = dados.piso_final || 0;
-                    document.getElementById('spanVidaFinal').innerText = dados.vida_final || 0;
-                    document.querySelector('.player-info p').innerText = dados.nick_name || "HERÓI";
+                    atualizarInfosNaTela(dados);
                     atualizarGraficoRadar(dados);
-                    montarRadar(dados)
+                    montarRadar(dados);
                 });
             } else {
                 console.error("Erro ao buscar dados do dashboard: " + response.status);
@@ -145,7 +143,11 @@
     }
 
 
-
+    function atualizarInfosNaTela(dados) {
+        document.getElementById('spanPisoMaximo').innerText = dados.piso_final || 0;
+        document.getElementById('spanVidaFinal').innerText = dados.vida_final || 0;
+        document.querySelector('.player-info p').innerText = dados.nick_name || "HERÓI";
+    }
 
     window.onload = function () {
         carregarDadosDashboard();
