@@ -1,1 +1,2 @@
-# Projeto-Tibia
+Este projeto tem intuito de trazer uma visão sobre o jogo tibia, um jogo que pode acabar sendo um life style dependendo da sua vontade. 
+No projeto é abordado alguns itens, monstros, como funcionam as guerras de clãs e alguns chefes globais. O jogo em si é sobre caça da monstros e caça de equipamentos melhores, mas o foco desse projeto é protagonizar a parte em que fazer as coisas juntos e conhecer novas pessoas é muito mais divertido, principalmente quando você se sente mais afastado da sociedade ou esta passando por um momento dificil da sua vida, é muito fácil conhecer pessoas novas, ter uma diversão juntos e com isso você acaba esquecendo seus problemas por um periodo e até consegue voltar a realidade com a cabeça mais leve.
