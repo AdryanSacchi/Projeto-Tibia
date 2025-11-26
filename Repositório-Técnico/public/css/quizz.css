@@ -94,13 +94,13 @@ button {
 }
 
 
-.flex-colunar {
+.coluna {
     border-radius: 20px;
     display: flex;
     flex-direction: column;
 }
 
-.flex-colunar img{
+.coluna img{
     border-radius: 20px;
     display: flex;
     flex-direction: row;

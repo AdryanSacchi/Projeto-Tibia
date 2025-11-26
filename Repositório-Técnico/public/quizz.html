@@ -11,7 +11,7 @@
 <body onload="iniciar()">
     <div class="pontuacaoJust" id="pontuacaoEJogo">
 
-        <div id="menuInicial" class="flex-colunar" style="gap: 10px; align-items: center;">
+        <div id="menuInicial" class="coluna" style="gap: 10px; align-items: center;">
             <label for="inputNick" style="color: white; font-weight: bold;">Digite seu Nick:</label>
             <input type="text" id="inputNick" placeholder="Ex: O Mago Claudio"
                 style="padding: 8px; border-radius: 5px; border: none;">
@@ -20,7 +20,7 @@
         </div>
 
 
-        <div id="pontuacao" class="flex-colunar" style="display: none;">
+        <div id="pontuacao" class="coluna" style="display: none;">
             <div id="pontuacaoDuranteJogo" class="icons-quiz">
                 <div id="painelAtributos" class="padding-8" style="color: white; font-size: 14px; margin-top: 10px;">
 
@@ -30,11 +30,11 @@
 
                     <div>Classe: <span id="spanClasse" class="text-bold">Nenhuma</span></div>
                     <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 5px;">
-                        <span>💪🏻 For: <span id="attrForca">0</span></span>
-                        <span>👟 Agi: <span id="attrAgilidade">0</span></span>
-                        <span>🧠 Int: <span id="attrInteligencia">0</span></span>
-                        <span>🍀 Sor: <span id="attrSorte">0</span></span>
-                        <span>🛡️ Res: <span id="attrResistencia">0</span></span>
+                        <span>💪🏻 For: <span id="atributoForca">0</span></span>
+                        <span>👟 Agi: <span id="atributoAgilidade">0</span></span>
+                        <span>🧠 Int: <span id="atributoInteligencia">0</span></span>
+                        <span>🍀 Sor: <span id="atributoSorte">0</span></span>
+                        <span>🛡️ Res: <span id="atributoResistencia">0</span></span>
                     </div>
                     <div id="msgLevelUp" style="color: yellow; font-weight: bold; height: 20px;"></div>
                 </div>
@@ -45,10 +45,10 @@
             </div>
         </div>
 
-        <div id="jogo" class=" flex-colunar border-secondary" style="display: none;">
+        <div id="jogo" class=" coluna border-secondary" style="display: none;">
 
             <div id="infoQuestao" class="padding-8">
-                <span>Piso atual: <span id="spanNumeroDaQuestaoAtual"></span> de <span id="qtdQuestoes"></span>
+                <span>Piso atual: <span id="spanNumeroDaQuestaoAtual"></span> de <span id="quantidadeQuestoes"></span>
                     pisos.</span>
             </div>
 
@@ -60,7 +60,7 @@
                 <span><em>Escolha uma opção dentre as abaixo:</em></span>
             </div>
 
-            <div id="opcoes" class="flex-colunar padding-8">
+            <div id="opcoes" class="coluna padding-8">
                 <span>
                     <input id="primeiraOpcao" type="radio" name="option" value="alternativaA">
                     <label for="primeiraOpcao" class="option" id="labelOpcaoUm"></label>
@@ -79,7 +79,7 @@
                 </span>
             </div>
 
-            <div id="botoes" class="flex-colunar padding-8">
+            <div id="botoes" class="coluna padding-8">
                 <button onclick="submeter()" id="botaoSubmeter">Ja me decidi!</button>
                 <button onclick="proximoPiso()" id="botaoProximo" disabled>Avançar para o próximo andar</button>
                 <button onclick="window.location.href='index.html'" id="botaoFugir" disabled>FUGIR</button>
@@ -203,7 +203,7 @@
         document.getElementById('menuInicial').style.display = "none";
         document.getElementById('pontuacao').style.display = "flex";
         document.getElementById('jogo').style.display = "flex";
-        document.getElementById('qtdQuestoes').innerHTML = QUESTOES.length;
+        document.getElementById('quantidadeQuestoes').innerHTML = QUESTOES.length;
         document.getElementById('spanVidaAtual').innerHTML = vida;
         document.getElementById('spanPisoAtual').innerHTML = piso;
 
@@ -402,11 +402,11 @@
     function atualizarPainelAtributos() {
         document.getElementById('spanNomeJogador').innerHTML = jogador.nome;
         document.getElementById('spanClasse').innerHTML = jogador.classe;
-        document.getElementById('attrForca').innerHTML = jogador.atributos.forca;
-        document.getElementById('attrAgilidade').innerHTML = jogador.atributos.agilidade;
-        document.getElementById('attrInteligencia').innerHTML = jogador.atributos.inteligencia;
-        document.getElementById('attrSorte').innerHTML = jogador.atributos.sorte;
-        document.getElementById('attrResistencia').innerHTML = jogador.atributos.resistencia;
+        document.getElementById('atributoForca').innerHTML = jogador.atributos.forca;
+        document.getElementById('atributoAgilidade').innerHTML = jogador.atributos.agilidade;
+        document.getElementById('atributoInteligencia').innerHTML = jogador.atributos.inteligencia;
+        document.getElementById('atributoSorte').innerHTML = jogador.atributos.sorte;
+        document.getElementById('atributoResistencia').innerHTML = jogador.atributos.resistencia;
     }
 
 </script>
