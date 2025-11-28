@@ -44,7 +44,7 @@ function salvarTentativa(
         .then(resultado => {
             const idNovoPersonagem = resultado.insertId;
             var instrucaoDungeon = `
-                INSERT INTO personagem_dungeon (vida_final, piso_final, fk_personagem) 
+                INSERT INTO dungeon (vida_final, piso_final, fk_personagem) 
                 VALUES (${vida}, ${piso}, ${idNovoPersonagem});
             `;
 
